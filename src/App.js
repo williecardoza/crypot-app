@@ -3,9 +3,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import { CoinList, CoinPage, Portfolio } from "./pages";
+import { NavBar } from "./components"
 import { ThemeProvider } from "styled-components";
 
 const darkTheme = {
@@ -27,16 +27,7 @@ class App extends React.Component{
       <ThemeProvider theme={this.state.on ? darkTheme : lightTheme}>
       <Router>
         <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Coins</Link>
-              </li>
-              <li>
-                <Link to="/Portfolio">Portfolio</Link>
-              </li>
-            </ul>
-          </nav>
+          <NavBar />
           <Switch>
             <Route exact path="/"  component={CoinList}/>
             <Route exact path="/coinPage/:coinId" component={CoinPage}/>
