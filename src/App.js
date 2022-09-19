@@ -34,7 +34,16 @@ class App extends React.Component {
               handleThemeChange={this.handleThemeChange}
             />
             <Switch>
-              <Route exact path="/" component={CoinList} />
+              <Route
+                exact
+                path="/"
+                component={props => (
+                  <CoinList
+                    {...props}
+                    theme={this.state.theme ? lightTheme : darkTheme}
+                  />
+                )}
+              />
               <Route exact path="/coinPage/:coinId" component={CoinPage} />
               <Route exact path="/portfolio" component={Portfolio} />
             </Switch>
