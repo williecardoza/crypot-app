@@ -33,7 +33,7 @@ class NavBar extends React.Component {
             <RightContainer>
               <Li>
                 <InputContainer>
-                  <SearchIcon />
+                  <SearchIcon fill= {this.props.theme.color}/>
                   <Input type="text" placeholder="Search..." />
                 </InputContainer>
               </Li>
@@ -46,8 +46,8 @@ class NavBar extends React.Component {
                   </CurrencyContainer>
                 </CurrencyContainer>
               </Li>
-              <Li>
-                <ThemeIcon />
+              <Li onClick={this.props.handleThemeChange}>
+                <ThemeIcon fill= {this.props.theme.color}/>
               </Li>
             </RightContainer>
           </Container>

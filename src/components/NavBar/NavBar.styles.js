@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 export const StyledLink = styled(Link)`
-  color: #ffffff;
-  padding: 35px;
+  color: ${props => props.theme.color};
+  padding: 32px;
   text-decoration: none;
 `;
 
@@ -16,6 +15,7 @@ export const Container = styled.div`
 export const CurrencyContainer = styled.div`
   align-items: center;
   display: flex;
+  padding: 1px;
 `;
 
 export const Input = styled.input`
@@ -25,21 +25,25 @@ export const Input = styled.input`
   margin-left: 8px;
   width: 100%;
   &::placeholder {
-   color: #FFFFFF;
+    color: ${props => props.theme.color};
   }
 `;
 export const InputContainer = styled.div`
   display: flex;
-  padding: 1.5px;
-  width: 320px;
+  padding: 2px;
+  width: 330px;
 `;
 
 export const Li = styled.li`
-  background: #2c2f36;
+  background: ${props => props.theme.third};
   border-radius: 5px;
+  color: ${props => props.theme.color};
   list-style: none;
-  margin: 20px 12px 20px 0;
-  padding: 10px;
+  margin: 20px 13.5px 20px 0;
+  padding: 12px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const LeftContainer = styled.div`
@@ -50,8 +54,8 @@ export const LeftContainer = styled.div`
 `;
 
 export const Nav = styled.nav`
-  background: #191b1f;
-  color: #ffffff;
+  background: ${props => props.theme.secondary};
+  color: ${props => props.theme.color};
 `;
 
 export const RightContainer = styled.div`
