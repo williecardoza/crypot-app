@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { CoinList, CoinPage, Portfolio } from "./pages";
+import { HomePage, CoinPage, Portfolio } from "./pages";
 import { NavBar } from "./components";
 import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
 
@@ -38,7 +38,7 @@ class App extends React.Component {
                 exact
                 path="/"
                 component={props => (
-                  <CoinList
+                  <HomePage
                     {...props}
                     theme={this.state.theme ? lightTheme : darkTheme}
                   />
