@@ -1,13 +1,13 @@
 import React from "react";
 import axios from "axios";
-import { CoinCard } from "/Users/williecardoza/Desktop/portfolio-app/src/components/index.js";
-import { BitcoinChart } from "/Users/williecardoza/Desktop/portfolio-app/src/components/index.js";
-import { CoinListTable } from "./HomePage.styles.js";
+import BitcoinChart from "../../components/BitcoinChart";
+import CoinList from "../../components/CoinList";
+
 class HomePage extends React.Component {
   state = {
     coinList: [],
     bitcoinData: [],
-    dataFetched: false
+    dataFetched: false,
   };
 
   getCoinList = async () => {
@@ -25,7 +25,6 @@ class HomePage extends React.Component {
         "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=180&interval=daily";
       const { data } = await axios(URL);
       this.setState({ bitcoinData: data, dataFetched: true });
-      console.log(data);
     } catch (error) {}
   };
 
@@ -37,25 +36,13 @@ class HomePage extends React.Component {
   render() {
     return (
       <>
-        {this.state.dataFetched && <BitcoinChart data={this.state.bitcoinData} theme={this.props.theme}/>}
-        <CoinListTable>
-          <thead>
-            <th>#</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>1h%</th>
-            <th>24h%</th>
-            <th>7d%</th>
-            <th>24h Volume/Market Cap</th>
-            <th>Circulating/TotalSupply</th>
-            <th>Last 7d</th>
-          </thead>
-          <tbody>
-            {this.state.coinList.map(coin => {
-              return <CoinCard coin={coin} key={coin.id} />;
-            })}
-          </tbody>
-        </CoinListTable>
+        {this.state.dataFetched && (
+          <BitcoinChart
+            data={this.state.bitcoinData}
+            theme={this.props.theme}
+          />
+        )}
+        <CoinList coinList={this.state.coinList} />
       </>
     );
   }

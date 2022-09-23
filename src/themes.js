@@ -17,6 +17,7 @@ export const lightTheme = {
 export const GlobalStyles = createGlobalStyle`
 body {
    background-color: ${props => props.theme.main};
-   color: ${props => props.theme.color}
+   color: ${props => props.theme.color};
+   font-family: "Poppins", sans-serif;
 }
 `;
