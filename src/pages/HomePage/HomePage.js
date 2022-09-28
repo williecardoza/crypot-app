@@ -6,7 +6,7 @@ import CoinList from "../../components/CoinList";
 class HomePage extends React.Component {
   state = {
     coinList: [],
-    bitcoinData: [],
+    data: [],
     dataFetched: false,
   };
 
@@ -21,10 +21,13 @@ class HomePage extends React.Component {
 
   getBitcoinData = async () => {
     try {
-      const URL =
+      const bitcoinDataURL =
         "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=180&interval=daily";
-      const { data } = await axios(URL);
-      this.setState({ bitcoinData: data, dataFetched: true });
+      const { data } = await axios(bitcoinDataURL);
+      this.setState({
+        data: data,
+        dataFetched: true,
+      });
     } catch (error) {}
   };
 
@@ -36,12 +39,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <>
-        {this.state.dataFetched && (
-          <BitcoinChart
-            data={this.state.bitcoinData}
-            theme={this.props.theme}
-          />
-        )}
+        {this.state.dataFetched && <BitcoinChart data={this.state.data} />}
         <CoinList coinList={this.state.coinList} />
       </>
     );
