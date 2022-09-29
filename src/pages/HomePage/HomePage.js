@@ -6,14 +6,14 @@ import CoinList from "../../components/CoinList";
 class HomePage extends React.Component {
   state = {
     coinList: [],
+    currency: this.props.currency,
     data: [],
     dataFetched: false,
   };
 
   getCoinList = async () => {
     try {
-      const coinListURL =
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d";
+      const coinListURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${this.state.currency}&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`;
       const { data } = await axios(coinListURL);
       this.setState({ coinList: data });
     } catch (error) {}
@@ -21,8 +21,7 @@ class HomePage extends React.Component {
 
   getBitcoinData = async () => {
     try {
-      const bitcoinDataURL =
-        "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=180&interval=daily";
+      const bitcoinDataURL = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${this.state.currency}&days=180&interval=daily`;
       const { data } = await axios(bitcoinDataURL);
       this.setState({
         data: data,
@@ -39,8 +38,13 @@ class HomePage extends React.Component {
   render() {
     return (
       <>
-        {this.state.dataFetched && <BitcoinChart data={this.state.data} />}
-        <CoinList coinList={this.state.coinList} />
+        {this.state.dataFetched && (
+          <BitcoinChart data={this.state.data} currency={this.state.currency} />
+        )}
+        <CoinList
+          coinList={this.state.coinList}
+          currency={this.state.currency}
+        />
       </>
     );
   }

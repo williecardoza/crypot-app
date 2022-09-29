@@ -7,20 +7,31 @@ import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
 
 class App extends React.Component {
   state = {
+    currency: JSON.parse(localStorage.getItem("currency")),
     theme: false,
   };
   handleThemeChange = () => {
     this.setState({ theme: !this.state.theme });
   };
 
+  handleSelectedCurrency = currency => {
+    this.setState({ currency: currency });
+  };
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.theme !== this.state.theme) {
       localStorage.setItem("theme", JSON.stringify(this.state.theme));
     }
+    if (prevState.currency !== this.state.currency) {
+      localStorage.setItem("currency", JSON.stringify(this.state.currency));
+    }
   }
 
   componentDidMount() {
-    this.setState({ theme: JSON.parse(localStorage.getItem("theme")) });
+    this.setState({
+      currency: JSON.parse(localStorage.getItem("currency")),
+      theme: JSON.parse(localStorage.getItem("theme")),
+    });
   }
 
   render() {
@@ -32,6 +43,7 @@ class App extends React.Component {
             <NavBar
               theme={this.state.theme ? lightTheme : darkTheme}
               handleThemeChange={this.handleThemeChange}
+              handleSelectedCurrency={this.handleSelectedCurrency}
             />
             <Switch>
               <Route
@@ -41,6 +53,7 @@ class App extends React.Component {
                   <HomePage
                     {...props}
                     theme={this.state.theme ? lightTheme : darkTheme}
+                    currency={this.state.currency}
                   />
                 )}
               />

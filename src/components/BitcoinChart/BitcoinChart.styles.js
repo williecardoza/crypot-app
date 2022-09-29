@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 export const ParentContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 85%;
+  width: 88%;
 `;
 export const ChartContainer = styled.div`
   margin: 0 auto 10px;
@@ -33,5 +33,6 @@ export const H2 = styled.h2`
 export const Container = styled.div`
   background: ${props => props.theme.secondary};
   border-radius: 10px;
+  box-shadow: 0 2px 14px -4px black;
   width: 740px;
 `;

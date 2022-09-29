@@ -98,7 +98,7 @@ class CoinCard extends React.Component {
             </div>
           </NameContainer>
         </Td>
-        <Td>{formatCurrency(current_price, "USD", "en")}</Td>
+        <Td>{formatCurrency(current_price, this.props.currency)}</Td>
         <Td>
           <PercentageValueContainer
             value={price_change_percentage_1h_in_currency}
