@@ -41,6 +41,7 @@ class App extends React.Component {
         <Router>
           <div>
             <NavBar
+              currency={this.state.currency}
               theme={this.state.theme ? lightTheme : darkTheme}
               handleThemeChange={this.handleThemeChange}
               handleSelectedCurrency={this.handleSelectedCurrency}
@@ -50,11 +51,7 @@ class App extends React.Component {
                 exact
                 path="/"
                 component={props => (
-                  <HomePage
-                    {...props}
-                    theme={this.state.theme ? lightTheme : darkTheme}
-                    currency={this.state.currency}
-                  />
+                  <HomePage {...props} currency={this.state.currency} />
                 )}
               />
               <Route exact path="/coinPage/:coinId" component={CoinPage} />

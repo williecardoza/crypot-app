@@ -1,8 +1,12 @@
 import React from "react";
-import DropdownMenu from "./Dropdown/Dropdown.js";
 import {
   Container,
   CurrencyContainer,
+  CurrencySymbol,
+  CurrencyWrapper,
+  Dropdown,
+  DropdownContainer,
+  DropdownItem,
   Input,
   InputContainer,
   LeftContainer,
@@ -13,9 +17,7 @@ import {
   RightContainer,
   StyledLink,
   StyledArrowIcon,
-  CurrencySymbol,
   Ul,
-  Wrapper,
 } from "./NavBar.styles.js";
 import { ReactComponent as ThemeIcon } from "../SVG/themeIcon.svg";
 import { ReactComponent as SearchIcon } from "../SVG/searchIcon.svg";
@@ -23,7 +25,11 @@ import { ReactComponent as SearchIcon } from "../SVG/searchIcon.svg";
 class NavBar extends React.Component {
   state = {
     clickedLink: false,
-    currency: JSON.parse(localStorage.getItem("currency")),
+    currencies: [
+      { name: "USD", symbol: "$" },
+      { name: "EUR", symbol: "€" },
+      { name: "GBP", symbol: "£" },
+    ],
     showDropdown: false,
   };
   handleDropdown = () => {
@@ -34,7 +40,6 @@ class NavBar extends React.Component {
   };
   handleSelectedCurrency = currency => {
     this.setState({
-      currency: currency,
       showDropdown: !this.state.showDropdown,
     });
     this.props.handleSelectedCurrency(currency);
@@ -76,31 +81,41 @@ class NavBar extends React.Component {
                   <Input type="text" placeholder="Search..." />
                 </InputContainer>
               </Li>
-
-              <Li>
-                <Wrapper>
-                  <CurrencyContainer onClick={this.handleDropdown}>
-                    <CurrencySymbol>
-                      {this.state.currency === "USD"
-                        ? "$"
-                        : this.state.currency === "EUR"
-                        ? "€"
-                        : this.state.currency === "GBP"
-                        ? "£"
-                        : ""}
-                    </CurrencySymbol>
-                    <div>{this.state.currency}</div>
+              <Li onClick={this.handleDropdown}>
+                <CurrencyWrapper>
+                  <CurrencyContainer>
+                    {this.state.currencies.map(currency => {
+                      if (currency.name === this.props.currency) {
+                        return (
+                          <>
+                            <CurrencySymbol>{currency.symbol}</CurrencySymbol>
+                            <div>{currency.name}</div>
+                          </>
+                        );
+                      } else return false;
+                    })}
                     <StyledArrowIcon showDropdown={this.state.showDropdown} />
                   </CurrencyContainer>
                   {this.state.showDropdown && (
-                    <DropdownMenu
-                      handleDropdownFocus={this.handleDropdownFocus}
-                      handleSelectedCurrency={this.handleSelectedCurrency}
-                    />
+                    <Dropdown onMouseLeave={this.handleDropdownFocus}>
+                      <DropdownContainer>
+                        {this.state.currencies.map(currency => {
+                          return (
+                            <DropdownItem
+                              onClick={() =>
+                                this.handleSelectedCurrency(currency.name)
+                              }
+                            >
+                              <CurrencySymbol>{currency.symbol}</CurrencySymbol>
+                              <div>{currency.name}</div>
+                            </DropdownItem>
+                          );
+                        })}
+                      </DropdownContainer>
+                    </Dropdown>
                   )}
-                </Wrapper>
+                </CurrencyWrapper>
               </Li>
-
               <Li onClick={this.props.handleThemeChange}>
                 <ThemeIcon fill={this.props.theme.color} />
               </Li>

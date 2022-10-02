@@ -33,6 +33,11 @@ export const CurrencySymbol = styled.div`
   margin-right: 8px;
 `;
 
+export const CurrencyWrapper = styled.div`
+  font-size: 19px;
+  position: relative;
+  width: 100px;
+`;
 
 export const Dropdown = styled.div`
   animation: fadeInOut 0.9s ease-in-out;
@@ -134,9 +139,4 @@ export const Ul = styled.ul`
   display: flex;
   margin: 0;
   padding: 0;
-`;
-export const Wrapper = styled.div`
-  font-size: 19px;
-  position: relative;
-  width: 100px;
 `;
