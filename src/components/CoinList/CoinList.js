@@ -22,7 +22,13 @@ class CoinList extends React.Component {
           </thead>
           <tbody>
             {this.props.coinList.map(coin => {
-              return <CoinCard coin={coin} key={coin.id} />;
+              return (
+                <CoinCard
+                  coin={coin}
+                  key={coin.id}
+                  currency={this.props.currency}
+                />
+              );
             })}
           </tbody>
         </Table>

@@ -2,52 +2,122 @@ import React from "react";
 import {
   Container,
   CurrencyContainer,
+  CurrencySymbol,
+  CurrencyWrapper,
+  Dropdown,
+  DropdownContainer,
+  DropdownItem,
   Input,
   InputContainer,
   LeftContainer,
   Li,
+  LinkWrapper,
+  LinkLi,
   Nav,
   RightContainer,
   StyledLink,
+  StyledArrowIcon,
   Ul,
 } from "./NavBar.styles.js";
 import { ReactComponent as ThemeIcon } from "../SVG/themeIcon.svg";
-import { ReactComponent as CurrencySymbol } from "../SVG/currencySymbol.svg";
-import { ReactComponent as DownArrow } from "../SVG/downArrow.svg";
 import { ReactComponent as SearchIcon } from "../SVG/searchIcon.svg";
 
 class NavBar extends React.Component {
+  state = {
+    clickedLink: false,
+    currencies: [
+      { name: "USD", symbol: "$" },
+      { name: "EUR", symbol: "€" },
+      { name: "GBP", symbol: "£" },
+    ],
+    showDropdown: false,
+  };
+  handleDropdown = () => {
+    this.setState({ showDropdown: !this.state.showDropdown });
+  };
+  handleDropdownFocus = () => {
+    this.setState({ showDropdown: false });
+  };
+  handleSelectedCurrency = currency => {
+    this.setState({
+      showDropdown: !this.state.showDropdown,
+    });
+    this.props.handleSelectedCurrency(currency);
+  };
+  handleClickedLink = () => {
+    this.setState({ clickedLink: !this.state.clickedLink });
+  };
   render() {
     return (
       <Nav>
         <Ul>
           <Container>
             <LeftContainer>
-              <Li>
-                <StyledLink to="/"> Coins </StyledLink>
-              </Li>
-              <Li>
-                <StyledLink to="/Portfolio"> Portfolio </StyledLink>
-              </Li>
+              <LinkLi>
+                <StyledLink to="/">
+                  <LinkWrapper
+                    onClick={this.handleClickedLink}
+                    currentPage={window.location.pathname === "/"}
+                  >
+                    Coins
+                  </LinkWrapper>
+                </StyledLink>
+              </LinkLi>
+              <LinkLi>
+                <StyledLink to="/Portfolio">
+                  <LinkWrapper
+                    onClick={this.handleClickedLink}
+                    currentPage={window.location.pathname === "/Portfolio"}
+                  >
+                    Portfolio
+                  </LinkWrapper>
+                </StyledLink>
+              </LinkLi>
             </LeftContainer>
             <RightContainer>
               <Li>
                 <InputContainer>
-                  <SearchIcon fill= {this.props.theme.color}/>
+                  <SearchIcon fill={this.props.theme.color} />
                   <Input type="text" placeholder="Search..." />
                 </InputContainer>
               </Li>
-              <Li>
-                <CurrencyContainer>
-                  <CurrencySymbol />
+              <Li onClick={this.handleDropdown}>
+                <CurrencyWrapper>
                   <CurrencyContainer>
-                    <div>USD</div>
-                    <DownArrow />
+                    {this.state.currencies.map(currency => {
+                      if (currency.name === this.props.currency) {
+                        return (
+                          <>
+                            <CurrencySymbol>{currency.symbol}</CurrencySymbol>
+                            <div>{currency.name}</div>
+                          </>
+                        );
+                      } else return false;
+                    })}
+                    <StyledArrowIcon showDropdown={this.state.showDropdown} />
                   </CurrencyContainer>
-                </CurrencyContainer>
+                  {this.state.showDropdown && (
+                    <Dropdown onMouseLeave={this.handleDropdownFocus}>
+                      <DropdownContainer>
+                        {this.state.currencies.map(currency => {
+                          return (
+                            <DropdownItem
+                              onClick={() =>
+                                this.handleSelectedCurrency(currency.name)
+                              }
+                            >
+                              <CurrencySymbol>{currency.symbol}</CurrencySymbol>
+                              <div>{currency.name}</div>
+                            </DropdownItem>
+                          );
+                        })}
+                      </DropdownContainer>
+                    </Dropdown>
+                  )}
+                </CurrencyWrapper>
               </Li>
               <Li onClick={this.props.handleThemeChange}>
-                <ThemeIcon fill= {this.props.theme.color}/>
+                <ThemeIcon fill={this.props.theme.color} />
               </Li>
             </RightContainer>
           </Container>

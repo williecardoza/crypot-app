@@ -12,7 +12,6 @@ import {
 } from "./BitcoinChart.styles";
 import { formatCurrency } from "@coingecko/cryptoformat";
 import { getCurrentDate } from "../../Utils/getCurrentDate";
-import { formatNumber } from "../../Utils/formatNumber";
 import {
   Chart as ChartJS,
   BarElement,
@@ -41,13 +40,11 @@ class BitcoinChart extends React.Component {
         <ParentContainer>
           <Container>
             <DescriptionContainer>
-              <H2>BTC</H2>
+              <H2>BTC 1D</H2>
               <H1>
                 {formatCurrency(
                   this.props.data.prices[this.props.data.prices.length - 1][1],
-                  "USD",
-                  "en",
-                  false
+                  this.props.currency
                 )}
               </H1>
               <H2>{getCurrentDate()}</H2>
@@ -60,10 +57,11 @@ class BitcoinChart extends React.Component {
             <DescriptionContainer>
               <H2>Volume 24h</H2>
               <H1>
-                {formatNumber(
+                {formatCurrency(
                   this.props.data.total_volumes[
                     this.props.data.total_volumes.length - 1
-                  ][1]
+                  ][1],
+                  this.props.currency
                 )}
               </H1>
               <H2>{getCurrentDate()}</H2>
