@@ -30,8 +30,9 @@ export const NameContainer = styled.div`
   align-items: center;
   display: flex;
   font-size: 19px;
+  margin: auto;
   padding: 5px;
-  width: 90%;
+  width: 70%;
   &:hover {
     cursor: pointer;
   }
