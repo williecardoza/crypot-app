@@ -10,6 +10,7 @@ import {
   PercentageValueContainer,
   PercentageValue,
   StyledArrowIcon,
+  StyledLink,
   Td,
   Tr,
 } from "./CoinCard.styles";
@@ -93,9 +94,9 @@ class CoinCard extends React.Component {
         <Td>
           <NameContainer>
             <CurrencyIcon image={image} />
-            <div>
+            <StyledLink to={`/coin/${name}`}>
               {name} ({symbol.toUpperCase()})
-            </div>
+            </StyledLink>
           </NameContainer>
         </Td>
         <Td>{formatCurrency(current_price, this.props.currency)}</Td>
@@ -104,9 +105,9 @@ class CoinCard extends React.Component {
             value={price_change_percentage_1h_in_currency}
           >
             <StyledArrowIcon value={price_change_percentage_1h_in_currency} />
-            <PercentageValue>
+            {/* <PercentageValue>
               {price_change_percentage_1h_in_currency.toFixed(2)}%
-            </PercentageValue>
+            </PercentageValue> */}
           </PercentageValueContainer>
         </Td>
         <Td>
