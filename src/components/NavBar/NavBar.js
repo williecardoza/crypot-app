@@ -18,6 +18,7 @@ import {
   StyledLink,
   StyledArrowIcon,
   Ul,
+  
 } from "./NavBar.styles.js";
 import { ReactComponent as ThemeIcon } from "../SVG/themeIcon.svg";
 import { ReactComponent as SearchIcon } from "../SVG/searchIcon.svg";

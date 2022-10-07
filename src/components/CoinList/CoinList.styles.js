@@ -6,17 +6,23 @@ export const CoinListContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
+
 export const Table = styled.table`
   background: ${props => props.theme.secondary};
   border-collapse: collapse;
   border-radius: 10px;
-  width: 90%;
+  box-shadow: 0 2px 14px -4px black;
+  margin-bottom: 40px;
+  position: relative;
+  height: 400px;
+  table-layout: fixed;
+  overflow: auto;
+  width: 88%;
 `;
 
 export const Th = styled.th`
   font-size: 18px;
-  text-align: left;
-  padding: 19px;
+  padding: 18px;
 `;
 
 export const Tr = styled.tr`
