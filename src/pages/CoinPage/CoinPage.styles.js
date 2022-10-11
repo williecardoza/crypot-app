@@ -109,7 +109,7 @@ export const H3 = styled.h3`
 export const Link = styled.a`
   color: #ffffff;
   font-size: 15px;
-  margin: 0 30px 0 30px;
+  margin: 0 40px 0 40px;
   text-decoration: none;
 `;
 export const ProfitValue = styled.span`

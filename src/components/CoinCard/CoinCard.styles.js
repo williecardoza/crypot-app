@@ -8,9 +8,9 @@ export const StyledArrowIcon = styled(ArrowSVG)`
 `;
 
 export const StyledLink = styled(Link)`
-color: #FFFFFF;
-text-decoration: none;
-`
+  color: #ffffff;
+  text-decoration: none;
+`;
 
 export const CurrencyContainer = styled.div`
   display: flex;

@@ -105,9 +105,9 @@ class CoinCard extends React.Component {
             value={price_change_percentage_1h_in_currency}
           >
             <StyledArrowIcon value={price_change_percentage_1h_in_currency} />
-            {/* <PercentageValue>
+            <PercentageValue>
               {price_change_percentage_1h_in_currency.toFixed(2)}%
-            </PercentageValue> */}
+            </PercentageValue>
           </PercentageValueContainer>
         </Td>
         <Td>
