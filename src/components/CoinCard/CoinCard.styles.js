@@ -1,9 +1,15 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowSVG } from "../SVG/arrowIcon.svg";
+import { Link } from "react-router-dom";
 
 export const StyledArrowIcon = styled(ArrowSVG)`
   fill: ${props => (props.value > 0 ? "#00FC2A" : "#FE1040")};
   transform: ${props => (props.value > 0 ? "rotate(0deg)" : "rotate(180deg)")};
+`;
+
+export const StyledLink = styled(Link)`
+  color: #ffffff;
+  text-decoration: none;
 `;
 
 export const CurrencyContainer = styled.div`

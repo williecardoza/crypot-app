@@ -27,9 +27,9 @@ class NavBar extends React.Component {
   state = {
     clickedLink: false,
     currencies: [
-      { name: "USD", symbol: "$" },
-      { name: "EUR", symbol: "€" },
-      { name: "GBP", symbol: "£" },
+      { name: "usd", symbol: "$" },
+      { name: "eur", symbol: "€" },
+      { name: "gbp", symbol: "£" },
     ],
     showDropdown: false,
   };
@@ -90,7 +90,7 @@ class NavBar extends React.Component {
                         return (
                           <>
                             <CurrencySymbol>{currency.symbol}</CurrencySymbol>
-                            <div>{currency.name}</div>
+                            <div>{currency.name.toUpperCase()}</div>
                           </>
                         );
                       } else return false;
@@ -108,7 +108,7 @@ class NavBar extends React.Component {
                               }
                             >
                               <CurrencySymbol>{currency.symbol}</CurrencySymbol>
-                              <div>{currency.name}</div>
+                              <div>{currency.name.toUpperCase()}</div>
                             </DropdownItem>
                           );
                         })}
