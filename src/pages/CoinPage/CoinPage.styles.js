@@ -1,13 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as ExchangeIcon } from "../../components/SVG/exchangeIcon.svg";
 import { ReactComponent as LayerIcon } from "../../components/SVG/layerIcon.svg";
-import { ReactComponent as ArrowSVG } from "../../components/SVG/arrowIcon.svg";
 
-export const StyledArrowIcon = styled(ArrowSVG)`
-  fill: ${props => (props.value > 0 ? "#00FC2A" : "#FE1040")};
-  margin: 5px;
-  transform: ${props => (props.value > 0 ? "rotate(0deg)" : "rotate(180deg)")};
-`;
 export const StyledExchangeIcon = styled(ExchangeIcon)`
   fill: ${props => props.theme.color};
   padding: 20px;
@@ -30,8 +24,11 @@ export const ButtonContainer = styled.div`
   width: 40%;
 `;
 export const Calculator = styled.div`
+  align-items: center;
   display: flex;
   font-size: 17px;
+  height: 45px;
+  width: 330px;
 `;
 export const CalculatorContainer = styled.div`
   align-items: center;
@@ -45,31 +42,16 @@ export const Container = styled.div`
   justify-content: center;
   margin: auto;
 `;
-export const CurrencyIcon = styled.div`
-  background: url(${props => props.image}) center center;
-  background-size: cover;
-  height: 55px;
-  width: 55px;
-`;
-export const CurrencyContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
 export const Currency = styled.div`
+  align-items: center;
   background: #06d554;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  font-weight: bold;
-  gap: 20px;
-  padding: 15px 35px;
-  text-align: center;
-`;
-export const CoinContainer = styled.div`
-  align-items: center;
   display: flex;
-  flex-direction: column;
-  margin: 35px 20px;
+  font-weight: bold;
+  height: 100%;
+  padding: 0 15px;
+  text-align: center;
 `;
 export const CoinDescription = styled.div`
   a:link {
@@ -83,43 +65,31 @@ export const FlexContainer = styled.div`
   display: flex;
   margin: 5px;
 `;
-export const IconContainer = styled.div`
-  align-items: center;
-  display: flex;
-  background: ${props => props.theme.main};
-  border-radius: 10px;
-  height: 105px;
-  justify-content: center;
-  margin: auto;
-  width: 105px;
-`;
-export const H1 = styled.h1`
-  font-size: 44px;
-  margin: 0;
-`;
-export const H2 = styled.h2`
-  font-size: 25px;
-  text-align: center;
-  margin: auto;
-`;
-export const H3 = styled.h3`
-  font-size: 18px;
-  margin: 0 0 0 10px;
+export const Input = styled.input`
+  background: ${props => props.theme.third};
+  border: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-sizing: border-box;
+  color: ${props => props.theme.color};
+  font-size: 16px;
+  height: 100%;
+  padding: 0 0 0 10px;
+  width: 100%;
+  :focus {
+    outline: none;
+    -webkit-appearance: none;
+  }
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
 `;
 export const Link = styled.a`
   color: #ffffff;
   font-size: 15px;
-  margin: 0 40px 0 40px;
+  margin: 0 50px 0 50px;
   text-decoration: none;
-`;
-export const ProfitValue = styled.span`
-  color: ${props => (props.value > 0 ? "#00FC2A" : "#FE1040")};
-  font-size: 18px;
-  font-weight: lighter;
-`;
-export const Span = styled.span`
-  font-size: 18px;
-  font-weight: lighter;
 `;
 export const Time = styled.p`
   font-size: 14px;
@@ -132,21 +102,22 @@ export const TimeFrame = styled.div`
 export const Theme = styled.div`
   background: ${props => props.theme.secondary};
   border-radius: 10px;
-  padding: 15px 25px;
+  padding: 12px 20px;
 `;
 export const ThemeContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 export const Value = styled.div`
+  align-items: center;
   background: ${props => props.theme.third};
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding: 15px 215px 5px 20px;
-  text-align: center;
-`;
-export const ValueContainer = styled.div`
-  margin: auto;
+  display: flex;
+  font-size: 16px;
+  height: 100%;
+  padding: 0 0 0 10px;
+  width: 100%;
 `;
 export const Wrapper = styled.div`
   display: flex;
