@@ -12,26 +12,6 @@ import {
 } from "./BitcoinChart.styles";
 import { formatCurrency } from "@coingecko/cryptoformat";
 import { getCurrentDate } from "../../Utils/getCurrentDate";
-import {
-  Chart as ChartJS,
-  BarElement,
-  LineElement,
-  CategoryScale,
-  Filler,
-  LinearScale,
-  PointElement,
-  Tooltip,
-} from "chart.js";
-ChartJS.register(
-  BarElement,
-  LineElement,
-  CategoryScale,
-  Filler,
-  LinearScale,
-  PointElement,
-  Tooltip
-);
-
 class BitcoinChart extends React.Component {
   render() {
     return (

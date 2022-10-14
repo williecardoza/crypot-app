@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as LayerIcon } from "../../components/SVG/layerIcon.svg";
 import { ReactComponent as ArrowSVG } from "../../components/SVG/arrowIcon.svg";
+import { ReactComponent as LinkIcon } from "../../components/SVG/linkIcon.svg";
 
 export const StyledArrowIcon = styled(ArrowSVG)`
   fill: ${props => (props.value > 0 ? "#00FC2A" : "#FE1040")};
@@ -10,6 +11,13 @@ export const StyledArrowIcon = styled(ArrowSVG)`
 export const StyledLayerIcon = styled(LayerIcon)`
   margin: 15px auto;
   width: 100%;
+`;
+export const StyledLinkIcon = styled(LinkIcon)`
+  fill: ${props => props.theme.color};
+  :hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `;
 export const CurrencyIcon = styled.div`
   background: url(${props => props.image}) center center;
@@ -67,24 +75,27 @@ export const IconContainer = styled.div`
   width: 105px;
 `;
 export const Link = styled.a`
-  color: #ffffff;
+  color: ${props => props.theme.color};
   font-size: 15px;
   margin: 0 40px 0 40px;
   text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 export const MarketDataContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const PriceContainer = styled.div`
-  margin: 25px;
-`;
+export const PriceContainer = styled.div``;
 export const ProfitValue = styled.span`
   color: ${props => (props.value > 0 ? "#00FC2A" : "#FE1040")};
   font-size: 18px;
   font-weight: lighter;
 `;
 export const VolumeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-top: 25px;
 `;
 export const Span = styled.span`
@@ -94,6 +105,7 @@ export const Span = styled.span`
 export const Theme = styled.div`
   background: ${props => props.theme.secondary};
   border-radius: 10px;
+  box-shadow: 0 2px 10px -4px black;
   padding: 15px 25px;
 `;
 export const ThemeContainer = styled.div`
