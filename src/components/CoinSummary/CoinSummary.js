@@ -3,7 +3,6 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { ReactComponent as GreenArrow } from "../../components/SVG/greenArrow.svg";
 import { ReactComponent as RedArrow } from "../../components/SVG/redArrow.svg";
 import { ReactComponent as PlusButton } from "../../components/SVG/plusIcon.svg";
-import { ReactComponent as LinkIcon } from "../../components/SVG/linkIcon.svg";
 import { formatCurrency } from "@coingecko/cryptoformat";
 import { formatNumber } from "../../Utils/formatNumber";
 import {
@@ -22,6 +21,7 @@ import {
   Span,
   StyledArrowIcon,
   StyledLayerIcon,
+  StyledLinkIcon,
   Theme,
   ThemeContainer,
   ValueContainer,
@@ -29,6 +29,9 @@ import {
 } from "./CoinSummary.styles";
 
 class CoinSummary extends React.Component {
+  handleClickedLink = link => {
+    window.open(link);
+  };
   render() {
     const { data, currency } = this.props;
     return (
@@ -46,65 +49,74 @@ class CoinSummary extends React.Component {
           </Theme>
           <Theme>
             <FlexContainer>
-              <LinkIcon />
               <Link href={data.links.homepage[0]}>
                 {data.links.homepage[0]}
               </Link>
+              <StyledLinkIcon
+                onClick={() => this.handleClickedLink(data.links.homepage[0])}
+              />
             </FlexContainer>
           </Theme>
         </CurrencyContainer>
         <Theme>
           <PriceContainer>
-          <FlexContainer>
-            <H1>
-              {formatCurrency(
-                data.market_data.current_price[currency],
-                currency
-              )}
-            </H1>
-            <StyledArrowIcon />
-            <ProfitValue>
-              {formatNumber(data.market_data.price_change_percentage_24h)}%
-            </ProfitValue>
-          </FlexContainer>
-          <FlexContainer>
-            <ValueContainer>
-              <H3>
-                Profit:{" "}
-                <ProfitValue
-                  value={parseInt(data.market_data.price_change_24h)}
-                >
-                  {formatCurrency(data.market_data.price_change_24h, currency)}
-                </ProfitValue>
-              </H3>
-            </ValueContainer>
-          </FlexContainer>
+            <FlexContainer>
+              <H1>
+                {formatCurrency(
+                  data.market_data.current_price[currency],
+                  currency
+                )}
+              </H1>
+              <StyledArrowIcon />
+              <ProfitValue>
+                {formatNumber(data.market_data.price_change_percentage_24h)}%
+              </ProfitValue>
+            </FlexContainer>
+            <FlexContainer>
+              <ValueContainer>
+                <H3>
+                  Profit:{" "}
+                  <ProfitValue
+                    value={parseInt(data.market_data.price_change_24h)}
+                  >
+                    {formatCurrency(
+                      data.market_data.price_change_24h,
+                      currency
+                    )}
+                  </ProfitValue>
+                </H3>
+              </ValueContainer>
+            </FlexContainer>
 
-          <StyledLayerIcon />
-          <FlexContainer>
-            <GreenArrow />
-            <H3>
-              All Time High:{" "}
-              <Span>
-                {formatCurrency(data.market_data.ath[currency], currency)}
-              </Span>
-              <div>
-                {new Date(data.market_data.ath_date[currency]).toLocaleString()}
-              </div>
-            </H3>
-          </FlexContainer>
-          <FlexContainer>
-            <RedArrow />
-            <H3>
-              All Time Low:{" "}
-              <Span>
-                {formatCurrency(data.market_data.atl[currency], currency)}
-              </Span>
-              <div>
-                {new Date(data.market_data.atl_date[currency]).toLocaleString()}
-              </div>
-            </H3>
-          </FlexContainer>
+            <StyledLayerIcon />
+            <FlexContainer>
+              <GreenArrow />
+              <H3>
+                All Time High:{" "}
+                <Span>
+                  {formatCurrency(data.market_data.ath[currency], currency)}
+                </Span>
+                <div>
+                  {new Date(
+                    data.market_data.ath_date[currency]
+                  ).toLocaleString()}
+                </div>
+              </H3>
+            </FlexContainer>
+            <FlexContainer>
+              <RedArrow />
+              <H3>
+                All Time Low:{" "}
+                <Span>
+                  {formatCurrency(data.market_data.atl[currency], currency)}
+                </Span>
+                <div>
+                  {new Date(
+                    data.market_data.atl_date[currency]
+                  ).toLocaleString()}
+                </div>
+              </H3>
+            </FlexContainer>
           </PriceContainer>
         </Theme>
         <Theme>

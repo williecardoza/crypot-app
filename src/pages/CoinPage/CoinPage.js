@@ -1,19 +1,17 @@
 import axios from "axios";
 import React from "react";
 import { CoinSummary } from "../../components";
-import { ReactComponent as CopyIcon } from "../../components/SVG/copyIcon.svg";
-import { ReactComponent as LinkIcon } from "../../components/SVG/linkIcon.svg";
+import { CoinPageChart } from "../../components";
 import {
   Button,
   ButtonContainer,
   Calculator,
   CalculatorContainer,
+  ChartContainer,
   Container,
   Currency,
   CoinDescription,
-  FlexContainer,
   Input,
-  Link,
   StyledExchangeIcon,
   StyledLayerIcon,
   Time,
@@ -26,9 +24,17 @@ import {
 class CoinPage extends React.Component {
   state = {
     calculatorValue: null,
+    coinHistory: null,
     data: null,
     inputValue: null,
-    timeFrames: ["1d", "7d", "30d", "90", "1y", "Max"],
+    timeFrames: [
+      { interval: "1d", days: 1 },
+      { interval: "7d", days: 7 },
+      { interval: "30d", days: 30 },
+      { interval: "90d", days: 90 },
+      { interval: "1y", days: 360 },
+      { interval: "5y", days: 1800 },
+    ],
   };
 
   fetchCoinData = async () => {
@@ -41,6 +47,14 @@ class CoinPage extends React.Component {
     } catch (error) {}
   };
 
+  fetchCoinHistory = async days => {
+    try {
+      const coinURL = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${this.props.currency.toLowerCase()}&days=${days}`;
+      const { data } = await axios(coinURL);
+      this.setState({ coinHistory: data });
+    } catch (error) {}
+  };
+
   handleChange = e => {
     const sum =
       e.target.value /
@@ -48,12 +62,17 @@ class CoinPage extends React.Component {
     this.setState({ calculatorValue: sum, inputValue: e.target.text });
   };
 
+  handleClickedLink = link => {
+    window.open(link);
+  };
+
   componentDidMount() {
     this.fetchCoinData();
+    this.fetchCoinHistory(7);
   }
 
   render() {
-    const { data, timeFrames } = this.state;
+    const { data, timeFrames, coinHistory } = this.state;
     const { currency } = this.props;
     return (
       <Container>
@@ -72,27 +91,6 @@ class CoinPage extends React.Component {
                 }}
               ></CoinDescription>
             </Theme>
-            <ThemeContainer>
-              {data.links.blockchain_site
-                .filter((link, index) => index < 3)
-                .map(link => (
-                  <Theme>
-                    <FlexContainer>
-                      <LinkIcon />
-                      <Link>{link}</Link>
-                      <CopyIcon />
-                    </FlexContainer>
-                  </Theme>
-                ))}
-            </ThemeContainer>
-            <ButtonContainer>
-              {timeFrames.map(time => (
-                <TimeFrame>
-                  <Button />
-                  <Time>{time}</Time>
-                </TimeFrame>
-              ))}
-            </ButtonContainer>
             <CalculatorContainer>
               <Calculator>
                 <Currency>{currency.toUpperCase()}</Currency>
@@ -100,7 +98,6 @@ class CoinPage extends React.Component {
                   onChange={this.handleChange}
                   type={"number"}
                   value={this.state.inputValue}
-                  thousandSeparator={true}
                 ></Input>
               </Calculator>
               <StyledExchangeIcon />
@@ -115,7 +112,24 @@ class CoinPage extends React.Component {
                 </Value>
               </Calculator>
             </CalculatorContainer>
+            <ButtonContainer>
+              {timeFrames.map(timeframe => (
+                <TimeFrame>
+                  <Button
+                    onClick={() => {
+                      this.fetchCoinHistory(timeframe.days);
+                    }}
+                  />
+                  <Time>{timeframe.interval}</Time>
+                </TimeFrame>
+              ))}
+            </ButtonContainer>
           </Wrapper>
+        )}
+        {coinHistory && (
+          <ChartContainer>
+            <CoinPageChart coinHistory={coinHistory} />
+          </ChartContainer>
         )}
       </Container>
     );

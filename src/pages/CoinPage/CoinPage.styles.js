@@ -12,14 +12,23 @@ export const StyledLayerIcon = styled(LayerIcon)`
 `;
 export const Button = styled.button`
   background: none;
-  border: 1px solid #06d554;
+  border: 2px solid #06d554;
   border-radius: 50%;
   height: 30px;
   width: 30px;
+  :hover {
+    background: #06d554;
+    border: 5px solid green;
+    cursor: pointer;
+  }
+  :focus {
+    background: #06d554;
+    border: 5px solid green;
+  }
 `;
 export const ButtonContainer = styled.div`
   display: flex;
-  margin: auto;
+  margin: 15px auto 0 auto;
   justify-content: space-between;
   width: 40%;
 `;
@@ -39,6 +48,7 @@ export const CalculatorContainer = styled.div`
 export const Container = styled.div`
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: auto;
 `;
@@ -60,10 +70,8 @@ export const CoinDescription = styled.div`
   }
   text-align: center;
 `;
-export const FlexContainer = styled.div`
-  align-items: center;
-  display: flex;
-  margin: 5px;
+export const ChartContainer = styled.div`
+  width: 100%;
 `;
 export const Input = styled.input`
   background: ${props => props.theme.third};
@@ -85,12 +93,6 @@ export const Input = styled.input`
     -webkit-appearance: none;
   }
 `;
-export const Link = styled.a`
-  color: #ffffff;
-  font-size: 15px;
-  margin: 0 50px 0 50px;
-  text-decoration: none;
-`;
 export const Time = styled.p`
   font-size: 14px;
   margin-left: 10px;
@@ -102,7 +104,8 @@ export const TimeFrame = styled.div`
 export const Theme = styled.div`
   background: ${props => props.theme.secondary};
   border-radius: 10px;
-  padding: 12px 20px;
+  box-shadow: 0 2px 10px -4px black;
+  padding: 10px 18px;
 `;
 export const ThemeContainer = styled.div`
   display: flex;
