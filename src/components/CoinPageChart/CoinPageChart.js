@@ -12,7 +12,7 @@ import {
   Tooltip,
 } from "chart.js";
 ChartJS.register(
-  BarElement
+  BarElement,
   LineElement,
   CategoryScale,
   Filler,
