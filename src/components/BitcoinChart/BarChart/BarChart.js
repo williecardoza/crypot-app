@@ -21,12 +21,12 @@ ChartJS.register(
   Tooltip
 );
 
-class BarChart extends React.Component {
-  data = {
-    labels: this.props.data.total_volumes.map(price => formatDate(price[0])),
+const BarChart = props => {
+  const data = {
+    labels: props.data.total_volumes.map(price => formatDate(price[0])),
     datasets: [
       {
-        data: this.props.data.total_volumes.map(price => price[1]),
+        data: props.data.total_volumes.map(price => price[1]),
         fill: true,
         backgroundColor: "#2172E5",
         barThickness: 6,
@@ -35,7 +35,7 @@ class BarChart extends React.Component {
       },
     ],
   };
-  options = {
+  const options = {
     onHover: (event, chartElement) => {
       const target = event.native ? event.native.target : event.target;
       target.style.cursor = chartElement[0] ? "pointer" : "default";
@@ -68,10 +68,6 @@ class BarChart extends React.Component {
       },
     },
   };
-  render() {
-    return (
-      <Bar data={this.data} options={this.options} height={250} width={640} />
-    );
-  }
-}
+  return <Bar data={data} options={options} height={250} width={640} />;
+};
 export default BarChart;

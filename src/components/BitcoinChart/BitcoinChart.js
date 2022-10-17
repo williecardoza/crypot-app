@@ -12,10 +12,10 @@ import {
 } from "./BitcoinChart.styles";
 import { formatCurrency } from "@coingecko/cryptoformat";
 import { getCurrentDate } from "../../Utils/getCurrentDate";
-class BitcoinChart extends React.Component {
-  render() {
-    return (
-      <Wrapper>
+
+const BitcoinChart = (props) => {
+  return(
+    <Wrapper>
         <h2>Bitcoin Overview</h2>
         <ParentContainer>
           <Container>
@@ -23,14 +23,14 @@ class BitcoinChart extends React.Component {
               <H2>BTC 1D</H2>
               <H1>
                 {formatCurrency(
-                  this.props.data.prices[this.props.data.prices.length - 1][1],
-                  this.props.currency
+                  props.data.prices[props.data.prices.length - 1][1],
+                  props.currency
                 )}
               </H1>
               <H2>{getCurrentDate()}</H2>
             </DescriptionContainer>
             <ChartContainer>
-              <LineChart data={this.props.data} />
+              <LineChart data={props.data} />
             </ChartContainer>
           </Container>
           <Container>
@@ -38,21 +38,20 @@ class BitcoinChart extends React.Component {
               <H2>Volume 24h</H2>
               <H1>
                 {formatCurrency(
-                  this.props.data.total_volumes[
-                    this.props.data.total_volumes.length - 1
+                  props.data.total_volumes[
+                    props.data.total_volumes.length - 1
                   ][1],
-                  this.props.currency
+                  props.currency
                 )}
               </H1>
               <H2>{getCurrentDate()}</H2>
             </DescriptionContainer>
             <ChartContainer>
-              <BarChart data={this.props.data} />
+              <BarChart data={props.data} />
             </ChartContainer>
           </Container>
         </ParentContainer>
       </Wrapper>
-    );
-  }
+  )
 }
 export default BitcoinChart;

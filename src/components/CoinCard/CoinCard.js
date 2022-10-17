@@ -24,22 +24,22 @@ import {
 } from "chart.js";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-class CoinCard extends React.Component {
-  state = {
-    data: {
-      labels: this.props.coin.sparkline_in_7d.price,
+const CoinCard = (props) => {
+  
+    const data = {
+      labels: props.coin.sparkline_in_7d.price,
       datasets: [
         {
           label: "",
-          data: this.props.coin.sparkline_in_7d.price,
+          data: props.coin.sparkline_in_7d.price,
           fill: false,
           borderColor:
-            this.props.coin.price_change_percentage_7d_in_currency > 0
+            props.coin.price_change_percentage_7d_in_currency > 0
               ? "#00FC2A"
               : "#FE1040",
         },
-      ],
-      options: {
+      ] }
+     const options ={
         plugins: {
           legend: {
             display: false,
@@ -69,27 +69,23 @@ class CoinCard extends React.Component {
             ticks: { display: false },
           },
         },
-      },
-    },
-  };
-
-  render() {
-    const {
-      market_cap_rank,
-      image,
-      symbol,
-      name,
-      current_price,
-      price_change_percentage_1h_in_currency,
-      price_change_percentage_24h_in_currency,
-      price_change_percentage_7d_in_currency,
-      total_volume,
-      market_cap,
-      circulating_supply,
-      total_supply,
-    } = this.props.coin;
-    return (
-      <Tr>
+      };
+      const {
+        market_cap_rank,
+        image,
+        symbol,
+        name,
+        current_price,
+        price_change_percentage_1h_in_currency,
+        price_change_percentage_24h_in_currency,
+        price_change_percentage_7d_in_currency,
+        total_volume,
+        market_cap,
+        circulating_supply,
+        total_supply,
+      } = props.coin;
+      return(
+        <Tr>
         <Td>{market_cap_rank}</Td>
         <Td>
           <NameContainer>
@@ -99,7 +95,7 @@ class CoinCard extends React.Component {
             </StyledLink>
           </NameContainer>
         </Td>
-        <Td>{formatCurrency(current_price, this.props.currency)}</Td>
+        <Td>{formatCurrency(current_price, props.currency)}</Td>
         <Td>
           <PercentageValueContainer
             value={price_change_percentage_1h_in_currency}
@@ -161,11 +157,11 @@ class CoinCard extends React.Component {
         </Td>
         <Td>
           <LineChartContainer>
-            <Line data={this.state.data} options={this.state.data.options} />
+            <Line data={data} options={options} />
           </LineChartContainer>
         </Td>
       </Tr>
-    );
-  }
-}
+      )
+  
+  };
 export default CoinCard;
