@@ -2,17 +2,14 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CoinListContainer, Th, Tr, Table } from "./CoinList.styles";
 import CoinCard from "../CoinCard";
-class CoinList extends React.Component {
-  state = {
-    coinList: this.props.coinList,
-  };
-  render() {
-    return (
-      <CoinListContainer>
+
+const CoinList = (props) => {
+  return(
+    <CoinListContainer>
         <h2>Your Overview</h2>
         <Table>
           <InfiniteScroll
-            dataLength={this.state.coinList.length}
+            dataLength={props.coinList.length}
             hasMore={true}
             loader={<h4>Loading...</h4>}
             height={550}
@@ -31,12 +28,12 @@ class CoinList extends React.Component {
               </Tr>
             </thead>
             <tbody>
-              {this.props.coinList.map(coin => {
+              {props.coinList.map(coin => {
                 return (
                   <CoinCard
                     coin={coin}
                     key={coin.id}
-                    currency={this.props.currency}
+                    currency={props.currency}
                   />
                 );
               })}
@@ -44,7 +41,6 @@ class CoinList extends React.Component {
           </InfiniteScroll>
         </Table>
       </CoinListContainer>
-    );
-  }
+  )
 }
 export default CoinList;

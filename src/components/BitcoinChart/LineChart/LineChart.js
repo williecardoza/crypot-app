@@ -21,29 +21,28 @@ ChartJS.register(
   Tooltip
 );
 
-class LineChart extends React.Component {
-  data = {
-    labels: this.props.data.prices.map(price => formatDate(price[0])),
+const LineChart = props => {
+  const data = {
+    labels: props.data.prices.map(price => formatDate(price[0])),
     datasets: [
       {
-        data: this.props.data.prices,
+        data: props.data.prices,
         fill: {
           target: "origin",
           above:
-            this.props.data.prices.length - (1)[1] >
-            this.props.data.prices.length - (2)[1]
+            props.data.prices.length - (1)[1] >
+            props.data.prices.length - (2)[1]
               ? "rgb(0, 255, 95, 10%)"
               : "rgb(254, 16, 64, 10%)",
         },
         borderColor:
-          this.props.data.prices.length - (1)[1] >
-          this.props.data.prices.length - (2)[1]
+          props.data.prices.length - (1)[1] > props.data.prices.length - (2)[1]
             ? "#00FC2A"
             : "#FE1040",
       },
     ],
   };
-  options = {
+  const options = {
     onHover: (event, chartElement) => {
       const target = event.native ? event.native.target : event.target;
       target.style.cursor = chartElement[0] ? "pointer" : "default";
@@ -88,10 +87,6 @@ class LineChart extends React.Component {
       },
     },
   };
-  render() {
-    return (
-      <Line data={this.data} options={this.options} height={250} width={640} />
-    );
-  }
-}
+  return <Line data={data} options={options} height={250} width={640} />;
+};
 export default LineChart;

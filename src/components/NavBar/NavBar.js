@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   CurrencyContainer,
@@ -18,113 +18,106 @@ import {
   StyledLink,
   StyledArrowIcon,
   Ul,
-  
 } from "./NavBar.styles.js";
 import { ReactComponent as ThemeIcon } from "../SVG/themeIcon.svg";
 import { ReactComponent as SearchIcon } from "../SVG/searchIcon.svg";
 
-class NavBar extends React.Component {
-  state = {
-    clickedLink: false,
-    currencies: [
-      { name: "usd", symbol: "$" },
-      { name: "eur", symbol: "€" },
-      { name: "gbp", symbol: "£" },
-    ],
-    showDropdown: false,
+const NavBar = props => {
+  const [clickedLink, setClickedLink] = useState(false);
+  const [dropDown, setDropdown] = useState(false);
+  const currencies = [
+    { name: "usd", symbol: "$" },
+    { name: "eur", symbol: "€" },
+    { name: "gbp", symbol: "£" },
+  ];
+  const handleDropdown = () => {
+    setDropdown(!dropDown);
   };
-  handleDropdown = () => {
-    this.setState({ showDropdown: !this.state.showDropdown });
+  const handleDropdownFocus = () => {
+    setDropdown(false);
   };
-  handleDropdownFocus = () => {
-    this.setState({ showDropdown: false });
+  const handleSelectedCurrency = currency => {
+    setDropdown(!dropDown);
+    props.handleSelectedCurrency(currency);
   };
-  handleSelectedCurrency = currency => {
-    this.setState({
-      showDropdown: !this.state.showDropdown,
-    });
-    this.props.handleSelectedCurrency(currency);
+  const handleClickedLink = () => {
+    setClickedLink(!clickedLink);
   };
-  handleClickedLink = () => {
-    this.setState({ clickedLink: !this.state.clickedLink });
-  };
-  render() {
-    return (
-      <Nav>
-        <Ul>
-          <Container>
-            <LeftContainer>
-              <LinkLi>
-                <StyledLink to="/">
-                  <LinkWrapper
-                    onClick={this.handleClickedLink}
-                    currentPage={window.location.pathname === "/"}
-                  >
-                    Coins
-                  </LinkWrapper>
-                </StyledLink>
-              </LinkLi>
-              <LinkLi>
-                <StyledLink to="/Portfolio">
-                  <LinkWrapper
-                    onClick={this.handleClickedLink}
-                    currentPage={window.location.pathname === "/Portfolio"}
-                  >
-                    Portfolio
-                  </LinkWrapper>
-                </StyledLink>
-              </LinkLi>
-            </LeftContainer>
-            <RightContainer>
-              <Li>
-                <InputContainer>
-                  <SearchIcon fill={this.props.theme.color} />
-                  <Input type="text" placeholder="Search..." />
-                </InputContainer>
-              </Li>
-              <Li onClick={this.handleDropdown}>
-                <CurrencyWrapper>
-                  <CurrencyContainer>
-                    {this.state.currencies.map(currency => {
-                      if (currency.name === this.props.currency) {
+  return (
+    <Nav>
+      <Ul>
+        <Container>
+          <LeftContainer>
+            <LinkLi>
+              <StyledLink to="/">
+                <LinkWrapper
+                  onClick={handleClickedLink}
+                  currentPage={window.location.pathname === "/"}
+                >
+                  Coins
+                </LinkWrapper>
+              </StyledLink>
+            </LinkLi>
+            <LinkLi>
+              <StyledLink to="/Portfolio">
+                <LinkWrapper
+                  onClick={handleClickedLink}
+                  currentPage={window.location.pathname === "/Portfolio"}
+                >
+                  Portfolio
+                </LinkWrapper>
+              </StyledLink>
+            </LinkLi>
+          </LeftContainer>
+          <RightContainer>
+            <Li>
+              <InputContainer>
+                <SearchIcon fill={props.theme.color} />
+                <Input type="text" placeholder="Search..." />
+              </InputContainer>
+            </Li>
+            <Li onClick={handleDropdown}>
+              <CurrencyWrapper>
+                <CurrencyContainer>
+                  {currencies.map(currency => {
+                    if (currency.name === props.currency) {
+                      return (
+                        <>
+                          <CurrencySymbol>{currency.symbol}</CurrencySymbol>
+                          <div>{currency.name.toUpperCase()}</div>
+                        </>
+                      );
+                    } else return false;
+                  })}
+                  <StyledArrowIcon showDropdown={dropDown} />
+                </CurrencyContainer>
+                {dropDown && (
+                  <Dropdown onMouseLeave={handleDropdownFocus}>
+                    <DropdownContainer>
+                      {currencies.map(currency => {
                         return (
-                          <>
+                          <DropdownItem
+                            onClick={() =>
+                              handleSelectedCurrency(currency.name)
+                            }
+                          >
                             <CurrencySymbol>{currency.symbol}</CurrencySymbol>
                             <div>{currency.name.toUpperCase()}</div>
-                          </>
+                          </DropdownItem>
                         );
-                      } else return false;
-                    })}
-                    <StyledArrowIcon showDropdown={this.state.showDropdown} />
-                  </CurrencyContainer>
-                  {this.state.showDropdown && (
-                    <Dropdown onMouseLeave={this.handleDropdownFocus}>
-                      <DropdownContainer>
-                        {this.state.currencies.map(currency => {
-                          return (
-                            <DropdownItem
-                              onClick={() =>
-                                this.handleSelectedCurrency(currency.name)
-                              }
-                            >
-                              <CurrencySymbol>{currency.symbol}</CurrencySymbol>
-                              <div>{currency.name.toUpperCase()}</div>
-                            </DropdownItem>
-                          );
-                        })}
-                      </DropdownContainer>
-                    </Dropdown>
-                  )}
-                </CurrencyWrapper>
-              </Li>
-              <Li onClick={this.props.handleThemeChange}>
-                <ThemeIcon fill={this.props.theme.color} />
-              </Li>
-            </RightContainer>
-          </Container>
-        </Ul>
-      </Nav>
-    );
-  }
-}
+                      })}
+                    </DropdownContainer>
+                  </Dropdown>
+                )}
+              </CurrencyWrapper>
+            </Li>
+            <Li onClick={props.handleThemeChange}>
+              <ThemeIcon fill={props.theme.color} />
+            </Li>
+          </RightContainer>
+        </Container>
+      </Ul>
+    </Nav>
+  );
+};
 export default NavBar;
