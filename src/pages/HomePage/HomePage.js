@@ -21,6 +21,7 @@ const HomePage = () => {
     dispatch(getBitcoinData(currency));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency]);
+
   return (
     <>
       {bitcoinData && <BitcoinChart data={bitcoinData} currency={currency} />}

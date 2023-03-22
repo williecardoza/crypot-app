@@ -21,7 +21,6 @@ const App = () => {
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <GlobalStyles />
       <Router>
-        <div>
           <NavBar />
           <Switch>
             <Route exact path="/" component={HomePage} />
@@ -32,7 +31,7 @@ const App = () => {
             />
             <Route exact path="/portfolio" component={Portfolio} />
           </Switch>
-        </div>
+        
       </Router>
     </ThemeProvider>
   );
