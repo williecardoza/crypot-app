@@ -122,9 +122,9 @@ const CoinCard = (props) => {
             value={price_change_percentage_7d_in_currency}
           >
             <StyledArrowIcon value={price_change_percentage_7d_in_currency} />
-            <PercentageValue>
+            {/* <PercentageValue>
               {price_change_percentage_7d_in_currency.toFixed(2)}%
-            </PercentageValue>
+            </PercentageValue> */}
           </PercentageValueContainer>
         </Td>
         <Td>

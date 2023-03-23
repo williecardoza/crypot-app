@@ -25,11 +25,9 @@ export const StyledThemeIcon = styled(ThemeIcon)`
 `;
 
 export const Container = styled.div`
-  align-items: center;
   display: flex;
   justify-content: space-between;
-  margin: 0 0 0 auto;
-  width: 94%;
+  width: 100%;
 `;
 
 export const CurrencyContainer = styled.div`
@@ -133,6 +131,8 @@ export const Nav = styled.nav`
   background: ${props => props.theme.secondary};
   box-shadow: 6px 5px 13px -8px black;
   color: ${props => props.theme.color};
+  position: absolute;
+  width: 100%;
 `;
 
 export const RightContainer = styled.div`
