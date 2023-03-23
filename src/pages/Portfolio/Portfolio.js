@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Asset } from "../../components";
+import { Asset, AddAsset, UpdateAsset } from "../../components";
 import {
   AddAssetButton,
   Container,
@@ -7,25 +7,26 @@ import {
   PortfolioList,
   Wrapper,
 } from "./Portfolio.styles";
-import { AddAsset } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { handleModalClick, fetchCoins } from "../../store/portfolio/actions";
+import { handleAddAssetClick, fetchCoins } from "../../store/portfolio/actions";
 
 const Portfolio = () => {
-  const openModal = useSelector(state => state.portfolio.openModal);
+  const addAssetModal = useSelector(state => state.portfolio.addAssetModal);
+  const updateAssetModal = useSelector(
+    state => state.portfolio.updateAssetModal
+  );
   const assets = useSelector(state => state.portfolio.assets);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchCoins());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   return (
     <Container>
       <Wrapper>
-        <AddAssetButton onClick={() => dispatch(handleModalClick())}>
+        <AddAssetButton onClick={() => dispatch(handleAddAssetClick())}>
           Add Asset
         </AddAssetButton>
         <PortfolioList>
@@ -35,7 +36,8 @@ const Portfolio = () => {
           })}
         </PortfolioList>
       </Wrapper>
-      {openModal && <AddAsset />}
+      {addAssetModal && <AddAsset />}
+      {updateAssetModal && <UpdateAsset />}
     </Container>
   );
 };

@@ -23,7 +23,7 @@ import {
 } from "./AddAsset.styles";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  handleModalClick,
+  handleAddAssetClick,
   fetchCoinData,
   SearchCoin,
 } from "../../../store/portfolio/actions";
@@ -39,7 +39,7 @@ function AddAsset() {
   const dispatch = useDispatch();
 
   return (
-    <AddAssetOverlay onClick={() => dispatch(handleModalClick())}>
+    <AddAssetOverlay onClick={() => dispatch(handleAddAssetClick())}>
       <AddAssetContainer
         onClick={e => {
           e.stopPropagation();
@@ -47,7 +47,7 @@ function AddAsset() {
       >
         <TopContainer>
           <H2>Select Coin</H2>
-          <StyledExitIcon onClick={() => dispatch(handleModalClick())} />
+          <StyledExitIcon onClick={() => dispatch(handleAddAssetClick())} />
         </TopContainer>
         <MiddleContainer>
           <CoinContainer>
@@ -73,10 +73,11 @@ function AddAsset() {
                 onClick={() => setDropdown(!dropDown)}
               />
             </InputContainer>
-            {dropDown && (
+            {dropDown && filteredCoinList.length > 1 && (
               <DropDown onMouseLeave={() => setDropdown(false)}>
                 {filteredCoinList.map(coin => (
                   <DropDownItem
+                    key={coin.id}
                     onClick={() => {
                       setCoin(coin.id);
                       setDropdown(!dropDown);
@@ -108,7 +109,7 @@ function AddAsset() {
           </CoinDataContainer>
         </MiddleContainer>
         <ButtonContainer>
-          <Button onClick={() => dispatch(handleModalClick())} greenColor>
+          <Button onClick={() => dispatch(handleAddAssetClick())} greenColor>
             Close
           </Button>
           <Button
@@ -116,7 +117,7 @@ function AddAsset() {
               coin && date && amount
                 ? () => {
                     dispatch(fetchCoinData(coin, amount, date));
-                    dispatch(handleModalClick());
+                    dispatch(handleAddAssetClick());
                   }
                 : null
             }

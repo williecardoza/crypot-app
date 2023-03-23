@@ -1,6 +1,10 @@
 import React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
-import { RemoveCoin } from "../../../store/portfolio/actions";
+import {
+  handleUpdateAssetClick,
+  RemoveCoin,
+  UpdateCoinData,
+} from "../../../store/portfolio/actions";
 import { useDispatch } from "react-redux";
 import {
   AssetCardContainer,
@@ -83,10 +87,15 @@ const AssetCard = ({ coin }) => {
 
           <FlexContainer>
             <H3>Your Coin:</H3>
-            <EditContainer>
+            <EditContainer
+              onClick={() => {
+                dispatch(handleUpdateAssetClick());
+                dispatch(UpdateCoinData(coin.name));
+              }}
+            >
               <StyledEditIcon />
             </EditContainer>
-            <StyledRemoveIcon onClick={() => dispatch(RemoveCoin(coin.name))} />
+            <StyledRemoveIcon onClick={() => dispatch(RemoveCoin(coin.id))} />
           </FlexContainer>
           <MarketDataContainer>
             <H3>
