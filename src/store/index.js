@@ -3,15 +3,21 @@ import { persistStore, persistReducer } from "redux-persist";
 import app from "./app";
 import coin from "./coin";
 import coinList from "./home";
-import portfolio from "./portfolio"
+import portfolio from "./portfolio";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
+
+const assetsPersistConfig = {
+  key: "assets",
+  storage,
+  whitelist: ["assets"],
+};
 
 const rootReducer = combineReducers({
   app,
   coin,
   coinList,
-  portfolio
+  portfolio: persistReducer(assetsPersistConfig, portfolio),
 });
 
 const persistConfig = {

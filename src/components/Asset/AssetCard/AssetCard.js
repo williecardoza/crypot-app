@@ -1,5 +1,7 @@
 import React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { RemoveCoin } from "../../../store/portfolio/actions";
+import { useDispatch } from "react-redux";
 import {
   AssetCardContainer,
   AssetCardWrapper,
@@ -8,18 +10,19 @@ import {
   ColoredSpan,
   DataContainer,
   EditContainer,
-  EditCoinContainer,
   FlexContainer,
   Image,
   H1,
   H3,
   MarketDataContainer,
   StyledArrowIcon,
+  StyledRemoveIcon,
+  StyledEditIcon,
   Span,
 } from "./AssetCard.styles";
-import { ReactComponent as EditIcon } from "../../SVG/editIcon.svg";
 
 const AssetCard = ({ coin }) => {
+  const dispatch = useDispatch();
   const numeral = require("numeral");
   return (
     <AssetCardContainer>
@@ -28,19 +31,14 @@ const AssetCard = ({ coin }) => {
           <CoinImageContainer>
             <Image image={coin.image}></Image>
           </CoinImageContainer>
-          <H1>{coin.currencyName}</H1>
+          <H1>{coin.name}</H1>
         </CoinContainer>
 
         <DataContainer>
-          <EditCoinContainer>
-            <H3>Market Price:</H3>
-            <EditContainer>
-              <EditIcon />
-            </EditContainer>
-          </EditCoinContainer>
+          <H3>Market Price:</H3>
           <MarketDataContainer>
             <H3>
-              Current Price: <Span>${coin.currentPrice}</Span>
+              Current Price: <Span>${coin.current_price}</Span>
             </H3>
             <FlexContainer>
               <H3>PriceChange 24h:</H3>
@@ -83,12 +81,13 @@ const AssetCard = ({ coin }) => {
             </FlexContainer>
           </MarketDataContainer>
 
-          <EditCoinContainer>
+          <FlexContainer>
             <H3>Your Coin:</H3>
             <EditContainer>
-              <EditIcon />
+              <StyledEditIcon />
             </EditContainer>
-          </EditCoinContainer>
+            <StyledRemoveIcon onClick={() => dispatch(RemoveCoin(coin.name))} />
+          </FlexContainer>
           <MarketDataContainer>
             <H3>
               Coin Amount: <Span>{coin.coinAmount.toFixed(5)}</Span>
@@ -108,7 +107,7 @@ const AssetCard = ({ coin }) => {
               </ColoredSpan>
             </FlexContainer>
             <H3>
-              Purchase Date <Span>{coin.purchaseDate}</Span>
+              Purchase Date <Span>{coin.date}</Span>
             </H3>
           </MarketDataContainer>
         </DataContainer>

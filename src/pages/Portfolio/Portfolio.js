@@ -15,15 +15,12 @@ const Portfolio = () => {
   const openModal = useSelector(state => state.portfolio.openModal);
   const assets = useSelector(state => state.portfolio.assets);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(fetchCoins());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("assets", JSON.stringify(assets));
-  }, [assets]);
 
   return (
     <Container>
@@ -34,7 +31,7 @@ const Portfolio = () => {
         <PortfolioList>
           <H2>Your Statistics</H2>
           {assets.map(coin => {
-            return <Asset key={coin.currencyName} coin={coin} />;
+            return <Asset key={coin.name} coin={coin} />;
           })}
         </PortfolioList>
       </Wrapper>
