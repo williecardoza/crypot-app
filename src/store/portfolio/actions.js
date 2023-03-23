@@ -1,15 +1,23 @@
 import axios from "axios";
 import {
+  ADD_ASSET_MODAL_CLICKED,
   FETCH_COIN_LIST_SUCCESS,
   FILTER_COIN_LIST,
-  MODAL_CLICKED,
   GET_ASSETS_SUCCESS,
   REMOVE_ASSET_SUCCESS,
+  UPDATE_ASSET_MODAL_CLICK,
+  UPDATE_COIN_INFORMATION,
 } from "./index";
 
-export const handleModalClick = () => {
+export const handleAddAssetClick = () => {
   return {
-    type: MODAL_CLICKED,
+    type: ADD_ASSET_MODAL_CLICKED,
+  };
+};
+
+export const handleUpdateAssetClick = () => {
+  return {
+    type: UPDATE_ASSET_MODAL_CLICK,
   };
 };
 
@@ -46,7 +54,6 @@ export const fetchCoinData =
         total_supply,
         total_volume,
       } = data[0];
-
       const coin = {
         amountValue:
           current_price - previousPrice >= 0
@@ -58,6 +65,7 @@ export const fetchCoinData =
         current_price,
         date,
         image,
+        id: Math.random(),
         marketCapVsVolume: (total_volume / market_cap) * 100,
         name,
         priceChangeSince: current_price - previousPrice,
@@ -70,12 +78,9 @@ export const fetchCoinData =
     } catch (error) {}
   };
 
-export const RemoveCoin = coinName => (dispatch, getState) => {
+export const RemoveCoin = id => (dispatch, getState) => {
   const state = getState();
-  const filteredList = state.portfolio.assets.filter(
-    coin => coin.name !== coinName
-  );
-  console.log(filteredList);
+  const filteredList = state.portfolio.assets.filter(coin => coin.id !== id);
   dispatch({
     type: REMOVE_ASSET_SUCCESS,
     payload: filteredList,
@@ -90,5 +95,14 @@ export const SearchCoin = coinName => async (dispatch, getState) => {
   dispatch({
     type: FILTER_COIN_LIST,
     payload: filteredSearch,
+  });
+};
+
+export const UpdateCoinData = coinName => (dispatch, getState) => {
+  const state = getState();
+  const asset = state.portfolio.coinList.filter(coin => coin.name === coinName);
+  dispatch({
+    type: UPDATE_COIN_INFORMATION,
+    payload: asset,
   });
 };
