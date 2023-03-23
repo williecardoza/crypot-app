@@ -1,10 +1,22 @@
 import styled from "styled-components";
 import { ReactComponent as Arrow } from "../../SVG/arrowIcon.svg";
+import { ReactComponent as RemoveIcon } from "../../SVG/removeIcon.svg";
+import { ReactComponent as EditIcon } from "../../SVG/editIcon.svg";
 
 export const StyledArrowIcon = styled(Arrow)`
   fill: ${props => (props.value > 0 ? "#00FC2A" : "#FE1040")};
   transform: ${props => (props.value > 0 ? "rotate(0deg)" : "rotate(180deg)")};
   margin: 0 5px;
+`;
+
+export const StyledEditIcon = styled(EditIcon)``;
+
+export const StyledRemoveIcon = styled(RemoveIcon)`
+  height: 40px;
+  width: 40px;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const AssetCardContainer = styled.div`
@@ -36,7 +48,7 @@ export const CoinContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 60px;
+  padding: 50px;
 `;
 
 export const ColoredSpan = styled.span`
@@ -48,7 +60,6 @@ export const ColoredSpan = styled.span`
 export const DataContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
   justify-content: space-between;
   margin-left: 22px;
   width: 100%;
@@ -59,12 +70,9 @@ export const EditContainer = styled.div`
   border-radius: 10px;
   margin-left: 10px;
   padding: 10px 14px;
-`;
-
-export const EditCoinContainer = styled.div`
-  align-items: center;
-  display: flex;
-  width: 25%;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const FlexContainer = styled.div`
@@ -95,10 +103,10 @@ export const MarketDataContainer = styled.div`
   align-items: center;
   background: ${props => props.theme.secondary};
   border-radius: 10px;
-  box-shadow: 0px 7px 50px -28px black;
+  box-shadow: 0px 7px 50px -22px black;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 25px 20px;
 `;
 
 export const Span = styled.span`

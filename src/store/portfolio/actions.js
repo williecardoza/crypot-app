@@ -1,9 +1,10 @@
 import axios from "axios";
 import {
-  MODAL_CLICKED,
   FETCH_COIN_LIST_SUCCESS,
   FILTER_COIN_LIST,
+  MODAL_CLICKED,
   GET_ASSETS_SUCCESS,
+  REMOVE_ASSET_SUCCESS,
 } from "./index";
 
 export const handleModalClick = () => {
@@ -34,41 +35,60 @@ export const fetchCoinData =
       const currentDataURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coinName}&order=market_cap_desc&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`;
       const previous = await axios(previousDataURL);
       const { data } = await axios(currentDataURL);
-
       const previousPrice = previous.data.market_data.current_price.usd;
-      const currentPrice = data.map(item => item.current_price);
+      const {
+        current_price,
+        circulating_supply,
+        image,
+        market_cap,
+        name,
+        price_change_24h,
+        total_supply,
+        total_volume,
+      } = data[0];
+
       const coin = {
         amountValue:
-          currentPrice - previousPrice >= 0
-            ? (amount / previousPrice) * currentPrice
+          current_price - previousPrice >= 0
+            ? (amount / previousPrice) * current_price
             : 0,
         coinAmount:
-          currentPrice - previousPrice >= 0 ? amount / previousPrice : 0,
-        currentPrice: currentPrice[0],
-        circulatingSupplyVsMax:
-          data.map(item => item.circulating_supply / item.total_supply) * 100,
-        image: data.map(item => item.image),
-        marketCapVsVolume:
-          data.map(item => item.total_volume / item.market_cap) * 100,
-        currencyName: data.map(item => item.name),
-        priceChangeSince: currentPrice - previousPrice,
-        priceChange24H: data.map(item => item.price_change_24h)[0],
-        purchaseDate: date,
+          current_price - previousPrice >= 0 ? amount / previousPrice : 0,
+        circulatingSupplyVsMax: (circulating_supply / total_supply) * 100,
+        current_price,
+        date,
+        image,
+        marketCapVsVolume: (total_volume / market_cap) * 100,
+        name,
+        priceChangeSince: current_price - previousPrice,
+        priceChange24H: price_change_24h,
       };
       dispatch({
         type: GET_ASSETS_SUCCESS,
-        payload: coin,
+        payload: [...state.portfolio.assets, coin],
       });
     } catch (error) {}
   };
 
-  export const SearchCoin = coinName => async (dispatch, getState) => {
-    const state = getState();
-    const filteredSearch = state.portfolio.coinList.filter(coin =>
-      coin.id.includes(coinName)
-    );
-    dispatch({
-      type: FILTER_COIN_LIST,
-      payload: filteredSearch,
-    });
-  };
+export const RemoveCoin = coinName => (dispatch, getState) => {
+  const state = getState();
+  const filteredList = state.portfolio.assets.filter(
+    coin => coin.name !== coinName
+  );
+  console.log(filteredList);
+  dispatch({
+    type: REMOVE_ASSET_SUCCESS,
+    payload: filteredList,
+  });
+};
+
+export const SearchCoin = coinName => async (dispatch, getState) => {
+  const state = getState();
+  const filteredSearch = state.portfolio.coinList.filter(coin =>
+    coin.id.includes(coinName)
+  );
+  dispatch({
+    type: FILTER_COIN_LIST,
+    payload: filteredSearch,
+  });
+};

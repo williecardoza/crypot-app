@@ -28,7 +28,7 @@ export const H2 = styled.h2`
 export const PortfolioList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 30px;
 `;
 
 export const Wrapper = styled.div`
