@@ -8,8 +8,11 @@ export const StyledArrowIcon = styled(ArrowSVG)`
 `;
 
 export const StyledLink = styled(Link)`
-  color: #ffffff;
+  color: ${props => props.theme.color};
   text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 export const CurrencyContainer = styled.div`
@@ -18,30 +21,18 @@ export const CurrencyContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const CurrencyIcon = styled.div`
-  background: url(${props => props.image}) center center;
-  background-size: cover;
+export const CurrencyIcon = styled.img`
   border-radius: 5px;
-  height: 33px;
+  height: 35px;
   margin-right: 10px;
-  width: 33px;
+  vertical-align: middle;
+  width: 35px;
 `;
 export const LineChartContainer = styled.div`
   align-items: center;
   display: flex;
   height: 34px;
   width: 116px;
-`;
-export const NameContainer = styled.div`
-  align-items: center;
-  display: flex;
-  font-size: 19px;
-  margin: auto;
-  padding: 5px;
-  width: 70%;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 export const PercentageValueContainer = styled.div`
@@ -52,17 +43,15 @@ export const PercentageValueContainer = styled.div`
 `;
 
 export const Td = styled.td`
-  padding: 24px 19px 24px 19px;
   font-size: 19px;
+  padding: 20px 9px;
+  font-weight: lighter;
   &:hover {
     cursor: default;
   }
 `;
 export const Tr = styled.tr`
-  border-bottom: 1px solid #707070;
-  &:hover {
-    background: ${props => props.theme.third};
-  }
+  border-bottom: 1px dotted #707070;
 `;
 export const PercentageValue = styled.div`
   margin-left: 5px;

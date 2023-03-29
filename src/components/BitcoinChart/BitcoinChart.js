@@ -16,7 +16,7 @@ import { getCurrentDate } from "../../Utils/getCurrentDate";
 const BitcoinChart = (props) => {
   return(
     <Wrapper>
-        <h2>Bitcoin Overview</h2>
+        <H2>Bitcoin Overview</H2>
         <ParentContainer>
           <Container>
             <DescriptionContainer>

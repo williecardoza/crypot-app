@@ -87,6 +87,6 @@ const LineChart = props => {
       },
     },
   };
-  return <Line data={data} options={options} height={250} width={640} />;
+  return <Line data={data} options={options} height={240} width={640} />;
 };
 export default LineChart;

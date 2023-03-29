@@ -68,6 +68,6 @@ const BarChart = props => {
       },
     },
   };
-  return <Bar data={data} options={options} height={250} width={640} />;
+  return <Bar data={data} options={options} height={240} width={640} />;
 };
 export default BarChart;
