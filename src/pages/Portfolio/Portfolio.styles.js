@@ -28,12 +28,12 @@ export const H2 = styled.h2`
 export const PortfolioList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 72%;
+  width: 70%;
   margin-top: 90px;
 `;
