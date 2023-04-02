@@ -38,22 +38,29 @@ const LineChart = () => {
   const bitcoinData = useSelector(state => state.coinList.bitcoinData);
   const interval = useSelector(state => state.coinList.interval);
   const currency = useSelector(state => state.app.currency);
-  const prices = bitcoinData.prices.map(price => price[1]);
-
+  const prices = bitcoinData && bitcoinData.prices.map(price => price[1]);
   const data = {
     labels: bitcoinData.prices.map(price => formatDate(price[0])),
     datasets: [
       {
         data: prices,
-        fill: {
-          target: "origin",
-          above:
-            prices[prices.length - 1] > prices[0]
-              ? "rgb(0, 255, 95, 10%)"
-              : "rgb(254, 16, 64, 10%)",
-        },
         borderColor:
-          prices[prices.length - 1] > prices[0] ? "#00FC2A" : "#FE1040",
+          prices[prices.length - 1] > prices[0] ? "#0CF864" : "#FE1040",
+        backgroundColor: context => {
+          const ctx = context.chart.ctx;
+          const gradient = ctx.createLinearGradient(0, 0, 0, 350);
+          if (prices[prices.length - 1] > prices[0]) {
+            gradient.addColorStop(0, "rgba(0, 255, 95, .5)");
+            gradient.addColorStop(1, "rgba(0, 0, 0, 0.0)");
+          } else {
+            gradient.addColorStop(0, "rgba(254, 16, 64, .5)");
+            gradient.addColorStop(1, "rgba(0, 0, 0, 0.0)");
+          }
+          return gradient;
+        },
+        pointRadius: 0,
+        borderWidth: 3,
+        fill: true,
       },
     ],
   };
@@ -73,7 +80,7 @@ const LineChart = () => {
     },
     elements: {
       line: {
-        tension: 0.5,
+        tension: 0.3,
       },
       point: {
         radius: 0,
@@ -161,7 +168,7 @@ const LineChart = () => {
         </IntervalContainer>
       </DescriptionContainer>
       <ChartContainer>
-        <Line data={data} options={options} height={240} width={640} />
+        {bitcoinData && <Line data={data} options={options} height={240} width={640} />}
       </ChartContainer>
     </>
   );

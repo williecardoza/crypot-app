@@ -90,7 +90,7 @@ const BarChart = () => {
         </div>
       </DescriptionContainer>
       <ChartContainer>
-        <Bar data={data} options={options} height={240} width={640} />
+        {bitcoinData && <Bar data={data} options={options} height={240} width={640} />}
       </ChartContainer>
     </>
   );

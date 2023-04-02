@@ -1,7 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { ReactComponent as SortDownIcon } from "../SVG/sortDownIcon.svg";
 import { ReactComponent as LeftArrowIcon } from "../SVG/leftArrow.svg";
 import { ReactComponent as RightArrowIcon } from "../SVG/rightArrow.svg";
+
+const spinnerKeyframes = keyframes`
+   0% {
+    transform:  rotate(0deg);
+  }
+ 100% {
+    transform:  rotate(360deg);
+  }
+  `;
 
 export const StyledSortByIcon = styled(SortDownIcon)`
   fill: ${props => props.theme.color};
@@ -32,9 +41,9 @@ export const StyledRightArrow = styled(RightArrowIcon)`
 `;
 
 export const CoinListContainer = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 20px 0;
   width: 100%;
 `;
@@ -44,7 +53,7 @@ export const FilterContainer = styled.div`
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  padding: 12px 12px 5px 12px;
+  // padding: 12px 12px 5px 12px;
 `;
 
 export const H3 = styled.h3`
@@ -62,6 +71,17 @@ export const LeftFilterContainer = styled.div`
   align-items: baseline;
   display: flex;
   justify-content: space-around;
+`;
+
+export const LoadingSpinner = styled.div`
+  animation: 1.5s linear infinite ${spinnerKeyframes};
+  animation-play-state: inherit;
+  border: solid 5px ${props => props.theme.third};
+  border-bottom-color: white;
+  border-radius: 50%;
+  height: 40px;
+  margin: auto;
+  width: 40px;
 `;
 
 export const RightFilterContainer = styled.div`
@@ -85,6 +105,7 @@ export const Select = styled.select`
 
 export const Table = styled.table`
   border-collapse: collapse;
+  overflow-x: scroll;
   width: 100%;
 `;
 
@@ -92,8 +113,11 @@ export const TableContainer = styled.div`
   background: ${props => props.theme.secondary};
   border-radius: 10px;
   box-shadow: 0 2px 14px -4px black;
+  flex-direction: column;
   padding: 0 0 20px 0;
   margin: 10px 0;
+  overflow-x: scroll;
+  padding: 15px;
   width: 100%;
 `;
 
@@ -105,5 +129,4 @@ export const Th = styled.th`
 
 export const Tr = styled.tr`
   border-bottom: 1px dotted #707070;
-  position: relative;
 `;
