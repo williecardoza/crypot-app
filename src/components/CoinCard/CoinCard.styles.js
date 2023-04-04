@@ -37,7 +37,7 @@ export const LineChartContainer = styled.div`
 
 export const PercentageValueContainer = styled.div`
   align-items: center;
-  color: ${props => (props.value > 0 ? "#00FC2A" : "#FE1040")};
+  color: ${props => (props.value > 0 ? "#10E233" : "#FE1040")};
   display: flex;
   font-size: 19px;
 `;
