@@ -30,15 +30,19 @@ export const getCoinList = () => async (dispatch, getState) => {
   const state = getState();
   const { coinsPerPage, page, order } = state.coinList;
   try {
+    dispatch({
+      type: IS_LOADING,
+      payload: true,
+    });
     const coinListURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${
       state.app.currency
     }&order=${
-      order ? "                                market_cap" : "volume"
+      order ? "market_cap" : "volume"
     }_desc&per_page=${coinsPerPage}&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`;
     const { data } = await axios(coinListURL);
     dispatch({
       type: GET_COIN_LIST_DATA_SUCCESS,
-      payload: data,
+      payload: [data, false],
     });
   } catch (error) {}
 };

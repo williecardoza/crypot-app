@@ -27,7 +27,8 @@ const coinListReducer = (state = initialState, action) => {
     case GET_COIN_LIST_DATA_SUCCESS:
       return {
         ...state,
-        coinList: action.payload,
+        coinList: action.payload[0],
+        isLoading: action.payload[1]
       };
     case IS_LOADING:
       return {

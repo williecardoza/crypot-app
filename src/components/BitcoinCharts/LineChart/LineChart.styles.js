@@ -19,7 +19,7 @@ export const Button = styled.button`
 export const ChartContainer = styled.div`
   display: flex;
   position: absolute;
-  bottom: 10px;
+  bottom: 8px;
   width: 95%;
 `;
 
