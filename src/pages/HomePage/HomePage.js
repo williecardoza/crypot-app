@@ -7,9 +7,11 @@ import { getBitcoinData, getCoinList } from "../../store/home/actions";
 import {
   BitcoinChartContainer,
   ChartContainer,
+  CoinListContainer,
   Container,
   H2,
   LoadingSpinner,
+  TableContainer,
   Wrapper,
 } from "./HomePage.styles";
 
@@ -51,7 +53,18 @@ const HomePage = () => {
             {isLoading ? <LoadingSpinner /> : <BarChart />}
           </ChartContainer>
         </BitcoinChartContainer>
-        {coinList && <CoinList coinList={coinList} currency={currency} />}
+        <CoinListContainer>
+          <H2>Market Overview</H2>
+          <TableContainer>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : coinList ? (
+              <CoinList coinList={coinList} currency={currency} />
+            ) : (
+              <LoadingSpinner />
+            )}
+          </TableContainer>
+        </CoinListContainer>
       </Container>
     </Wrapper>
   );

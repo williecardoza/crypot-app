@@ -38,9 +38,11 @@ const LineChart = () => {
   const bitcoinData = useSelector(state => state.coinList.bitcoinData);
   const interval = useSelector(state => state.coinList.interval);
   const currency = useSelector(state => state.app.currency);
-  const prices = bitcoinData && bitcoinData.prices.map(price => price[1]);
+  const prices = bitcoinData ? bitcoinData.prices.map(price => price[1]) : "";
   const data = {
-    labels: bitcoinData.prices.map(price => formatDate(price[0])),
+    labels: bitcoinData
+      ? bitcoinData.prices.map(price => formatDate(price[0]))
+      : "",
     datasets: [
       {
         data: prices,
@@ -116,7 +118,7 @@ const LineChart = () => {
           <H2>Price</H2>
           <H1>
             {formatCurrency(
-              bitcoinData.prices[bitcoinData.prices.length - 1][1],
+              bitcoinData && bitcoinData.prices[prices.length - 1][1],
               currency
             )}
           </H1>
@@ -168,7 +170,9 @@ const LineChart = () => {
         </IntervalContainer>
       </DescriptionContainer>
       <ChartContainer>
-        {bitcoinData && <Line data={data} options={options} height={240} width={640} />}
+        {bitcoinData && (
+          <Line data={data} options={options} height={240} width={640} />
+        )}
       </ChartContainer>
     </>
   );

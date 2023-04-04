@@ -32,9 +32,18 @@ export const Container = styled.div`
   background: ${props => props.theme.main};
   display: flex;
   flex-direction: column;
-  margin-top: 90px;
-  padding: 0 50px;
+  margin-top: 70px;
+  padding: 45px 50px;
   width: 70%;
+
+`;
+
+export const CoinListContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 0 0;
+  width: 100%;
 `;
 
 export const H2 = styled.h2`
@@ -44,7 +53,7 @@ export const H2 = styled.h2`
 `;
 
 export const LoadingSpinner = styled.div`
-  animation: 1.5s linear infinite ${spinnerKeyframes};
+  animation: 1.3s linear infinite ${spinnerKeyframes};
   animation-play-state: inherit;
   border: solid 5px ${props => props.theme.third};
   border-bottom-color: white;
@@ -52,6 +61,17 @@ export const LoadingSpinner = styled.div`
   height: 40px;
   margin: auto;
   width: 40px;
+`;
+
+export const TableContainer = styled.div`
+  background: ${props => props.theme.secondary};
+  border-radius: 10px;
+  box-shadow: 0 2px 14px -4px black;
+  padding: 0 0 20px 0;
+  margin: 10px 0;
+  overflow-x: scroll;
+  padding: 15px;
+  width: 100%;
 `;
 
 export const Wrapper = styled.div`

@@ -1,60 +1,73 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as ArrowSVG } from "../SVG/arrowIcon.svg";
 import { ReactComponent as ThemeIcon } from "../SVG/themeIcon.svg";
 import { ReactComponent as SearchIcon } from "../SVG/searchIcon.svg";
 
 export const StyledLink = styled(Link)`
   color: ${props => props.theme.color};
+  margin: 0 0 0 10px;
   text-decoration: none;
+  :hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  background: none;
+  border-radius: 5px;
+  color: ${props => props.theme.color};
+  padding: 10px 30px;
+  text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
+  &.${props => props.activeClassName} {
+    background-color: ${props => props.theme.third};
+  }
 `;
 
 export const StyledArrowIcon = styled(ArrowSVG)`
   fill: #00ff5f;
   margin-left: 5px;
-  transform: ${props =>
-    props.showDropdown ? "rotate(0deg)" : "rotate(180deg)"};
+  transform: ${props => props.dropdown};
 `;
 
 export const StyledSearchIcon = styled(SearchIcon)`
   fill: ${props => props.theme.color};
+  right: 10px;
+  position: absolute;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledThemeIcon = styled(ThemeIcon)`
   fill: ${props => props.theme.color};
-`;
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+  vertical-align: middle;
 `;
 
 export const CurrencyContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
+  font-size: 19px;
+  position: relative;
 `;
 
 export const CurrencySymbol = styled.div`
   color: #00ff5f;
-  margin-right: 8px;
-`;
-
-export const CurrencyWrapper = styled.div`
-  font-size: 19px;
-  position: relative;
-  width: 100px;
+  margin: 0 5px 0 0;
 `;
 
 export const Dropdown = styled.div`
-  animation: fadeInOut 0.9s ease-in-out;
   box-shadow: 8px 8px 25px -7px black;
   position: absolute;
   top: 61px;
-  right: -13px;
+  right: 0;
   z-index: 10;
-  width: 125px;
+  width: 100%;
 `;
 
 export const DropdownContainer = styled.div`
@@ -78,20 +91,30 @@ export const DropdownItem = styled.div`
   width: 80%;
 `;
 
+export const Img = styled.img`
+  height: 25px;
+  width: 25px;
+`;
+
 export const Input = styled.input`
-  background: none;
+  background: ${props => props.theme.third};
   border: none;
+  border-radius: 5px;
+  color: ${props => props.theme.color};
   font-size: 19px;
-  margin-left: 8px;
-  width: 100%;
+  outline: none;
+  padding: 13px;
+  width: 280px;
   &::placeholder {
     color: ${props => props.theme.color};
   }
 `;
-export const InputContainer = styled.div`
+export const InputLi = styled.li`
+  align-items: center;
   display: flex;
-  padding: 2px;
-  width: 330px;
+  list-style: none;
+  margin: 0 5px;
+  position: relative;
 `;
 
 export const Li = styled.li`
@@ -100,53 +123,68 @@ export const Li = styled.li`
   box-shadow: 0 3px 9px -5px black;
   color: ${props => props.theme.color};
   list-style: none;
-  margin: 20px 0px 20px 0;
-  padding: 12px;
+  padding: 10px;
+  position: relative;
+  margin: 0 5px;
   &:hover {
     cursor: pointer;
   }
-`;
-export const LinkWrapper = styled.div`
-  padding: 12px 45px;
-  border-radius: 10px;
-  box-shadow: 0 3px 9px -5px black;
-  background: ${props => props.currentPage && props.theme.third};
-  :hover {
-    cursor: pointer;
-  }
-`;
-export const LinkLi = styled.li`
-  list-style: none;
 `;
 
 export const LeftContainer = styled.div`
   align-items: center;
   display: flex;
   font-size: 22px;
+`;
+
+export const MarketDataContainer = styled.div`
+  background: ${props => props.theme.secondary};
+  box-shadow: 6px 5px 13px -8px black;
+  border-radius: 0 0 10px 10px;
+  display: flex;
   justify-content: space-between;
-  width: 20%;
+  margin: auto;
+  padding: 5px 15px;
+  width: 45%;
 `;
 
 export const Nav = styled.nav`
-  background: ${props => props.theme.secondary};
-  box-shadow: 6px 5px 13px -8px black;
   color: ${props => props.theme.color};
   position: absolute;
   width: 100%;
+`;
+
+export const ProgressBarContainer = styled.div`
+  align-items: center;
+  display: flex;
 `;
 
 export const RightContainer = styled.div`
   align-items: center;
   display: flex;
   font-size: 17px;
-  justify-content: space-between;
-  margin-right: 2.8%;
-  width: 33%;
+  margin: 10px;
+`;
+
+export const SearchContainer = styled.div`
+  background: ${props => props.theme.third};
+  border-radius: 5px;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  position: absolute;
+  overflow-y: scroll;
+  width: 100%;
+  z-index: 10;
 `;
 
 export const Ul = styled.ul`
   align-items: center;
+  background: ${props => props.theme.secondary};
   display: flex;
-  margin: 0;
+  justify-content: space-between;
+  margin: 0 auto;
   padding: 0;
+  width: 85%;
 `;
