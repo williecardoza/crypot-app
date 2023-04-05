@@ -49,7 +49,7 @@ const CoinPage = props => {
     dispatch(getCoinData(props.match.params.coinId.toLowerCase()));
     dispatch(getCoinHistory(7, currency));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [data]);
 
   return (
     <Container>
@@ -90,9 +90,10 @@ const CoinPage = props => {
             </Calculator>
           </CalculatorContainer>
           <ButtonContainer>
-            {timeFrames.map(timeframe => (
+            {timeFrames.map((timeframe, index) => (
               <TimeFrame>
                 <Button
+                key={index}
                   onClick={() => {
                     dispatch(getCoinHistory(timeframe.days, currency));
                   }}

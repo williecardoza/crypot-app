@@ -33,10 +33,14 @@ ChartJS.register(
 const BarChart = () => {
   const bitcoinData = useSelector(state => state.coinList.bitcoinData);
   const data = {
-    labels: bitcoinData.total_volumes.map(price => formatDate(price[0])),
+    labels: bitcoinData
+      ? bitcoinData.total_volumes.map(price => formatDate(price[0]))
+      : "",
     datasets: [
       {
-        data: bitcoinData.total_volumes.map(price => price[1]),
+        data: bitcoinData
+          ? bitcoinData.total_volumes.map(price => price[1])
+          : "",
         fill: true,
         backgroundColor: "#2172E5",
         borderRadius: 3,
@@ -83,14 +87,16 @@ const BarChart = () => {
           <H2>Volume 24h</H2>
           <H1>
             {formatNumber(
-              bitcoinData.total_volumes[bitcoinData.total_volumes.length - 1][1]
+              bitcoinData ? bitcoinData.total_volumes[bitcoinData.total_volumes.length - 1][1] : ""
             )}
           </H1>
           <H2>{getCurrentDate()}</H2>
         </div>
       </DescriptionContainer>
       <ChartContainer>
-        {bitcoinData && <Bar data={data} options={options} height={240} width={640} />}
+        {bitcoinData && (
+          <Bar data={data} options={options} height={240} width={640} />
+        )}
       </ChartContainer>
     </>
   );

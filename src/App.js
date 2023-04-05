@@ -21,17 +21,16 @@ const App = () => {
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <GlobalStyles />
       <Router>
-          <NavBar />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route
-              exact
-              path="/coin/:coinId"
-              component={props => <CoinPage {...props} />}
-            />
-            <Route exact path="/portfolio" component={Portfolio} />
-          </Switch>
-        
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route
+            exact
+            path="/coin/:coinId"
+            component={props => <CoinPage {...props} />}
+          />
+          <Route exact path="/portfolio" component={Portfolio} />
+        </Switch>
       </Router>
     </ThemeProvider>
   );

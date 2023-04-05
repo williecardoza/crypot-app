@@ -19,9 +19,10 @@ export const getBitcoinData = days => async (dispatch, getState) => {
       state.app.currency
     }&days=${days}&interval=${days === 1 ? "hourly" : "daily"}`;
     const { data } = await axios(bitcoinDataURL);
+    const isLoading = data ? false : true;
     dispatch({
       type: GET_BITCOIN_DATA_SUCCESS,
-      payload: [data, days, false],
+      payload: [data, days, isLoading],
     });
   } catch (error) {}
 };
@@ -40,9 +41,10 @@ export const getCoinList = () => async (dispatch, getState) => {
       order ? "market_cap" : "volume"
     }_desc&per_page=${coinsPerPage}&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`;
     const { data } = await axios(coinListURL);
+    const isLoading = data ? false : true;
     dispatch({
       type: GET_COIN_LIST_DATA_SUCCESS,
-      payload: [data, false],
+      payload: [data, isLoading],
     });
   } catch (error) {}
 };
