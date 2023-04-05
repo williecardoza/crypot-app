@@ -6,60 +6,62 @@ import { CoinPageChart } from "../../components";
 import {
   Button,
   ButtonContainer,
-  Calculator,
   CalculatorContainer,
   ChartContainer,
   Container,
   Currency,
   CoinDescription,
+  H2,
   Input,
+  InputContainer,
   StyledExchangeIcon,
   StyledLayerIcon,
-  Time,
-  TimeFrame,
-  ThemeContainer,
+  SummaryContainer,
+  Symbol,
   Theme,
-  Value,
   Wrapper,
 } from "./CoinPage.styles";
 
 const CoinPage = props => {
-  const [calculatorValue, setCalculatorValue] = useState(null);
-  const [inputValue, setInputValue] = useState(null);
+  const [amountValue, setAmountValue] = useState("");
+  const [coinValue, setCoinValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
   const data = useSelector(state => state.coin.data);
   const coinHistory = useSelector(state => state.coin.coinHistory);
   const currency = useSelector(state => state.app.currency);
-  const timeFrames = [
-    { interval: "1d", days: 1 },
-    { interval: "7d", days: 7 },
-    { interval: "30d", days: 30 },
-    { interval: "90d", days: 90 },
-    { interval: "1y", days: 360 },
-    { interval: "5y", days: 1800 },
-  ];
+  const interval = useSelector(state => state.coin.interval);
+  const symbol = useSelector(state => state.app.symbol);
 
-  const handleChange = e => {
+  const handleAmountConversion = e => {
     const sum = e.target.value / data.market_data.current_price[currency];
-    setCalculatorValue(sum);
-    setInputValue(e.target.text);
+    setCoinValue(sum);
+    setInputValue(e.target.value);
+    setAmountValue("");
+  };
+
+  const handleCoinConversion = e => {
+    const sum = e.target.value * data.market_data.current_price[currency];
+    setAmountValue(sum);
+    setInputValue(e.target.value);
+    setCoinValue("");
   };
 
   useEffect(() => {
     dispatch(getCoinData(props.match.params.coinId.toLowerCase()));
-    dispatch(getCoinHistory(7, currency));
+    dispatch(getCoinHistory(props.match.params.coinId.toLowerCase(), interval));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [currency]);
 
   return (
     <Container>
       {data && (
         <Wrapper>
-          <h2>Your Summary</h2>
-          <ThemeContainer>
+          <H2>Coin Summary</H2>
+          <SummaryContainer>
             <CoinSummary data={data} currency={currency} />
-          </ThemeContainer>
-          <h2>Description</h2>
+          </SummaryContainer>
+          <H2>Description</H2>
           <Theme>
             <StyledLayerIcon />
             <CoinDescription
@@ -69,38 +71,86 @@ const CoinPage = props => {
             ></CoinDescription>
           </Theme>
           <CalculatorContainer>
-            <Calculator>
+            <InputContainer>
               <Currency>{currency.toUpperCase()}</Currency>
+              <Symbol>{symbol}</Symbol>
               <Input
-                onChange={handleChange}
+                onChange={e => handleAmountConversion(e)}
                 type={"number"}
-                value={inputValue}
+                value={coinValue ? inputValue : amountValue}
               ></Input>
-            </Calculator>
+            </InputContainer>
             <StyledExchangeIcon />
-            <Calculator>
+            <InputContainer>
               <Currency>{data.symbol.toUpperCase()}</Currency>
-              <Value>
-                {new Intl.NumberFormat("en-US", {
-                  maximumFractionDigits: 7,
-                  notation: "compact",
-                  compactDisplay: "short",
-                }).format(calculatorValue)}
-              </Value>
-            </Calculator>
+              <Input
+                onChange={e => handleCoinConversion(e)}
+                type={"number"}
+                value={
+                  amountValue
+                    ? inputValue
+                    : coinValue
+                    ? coinValue.toFixed(6)
+                    : ""
+                }
+              />
+            </InputContainer>
           </CalculatorContainer>
           <ButtonContainer>
-            {timeFrames.map((timeframe, index) => (
-              <TimeFrame>
-                <Button
-                key={index}
-                  onClick={() => {
-                    dispatch(getCoinHistory(timeframe.days, currency));
-                  }}
-                />
-                <Time>{timeframe.interval}</Time>
-              </TimeFrame>
-            ))}
+            <Button
+              interval={interval}
+              onClick={() => {
+                dispatch(getCoinHistory(data.id, 1));
+              }}
+              value={1}
+            >
+              1d
+            </Button>
+            <Button
+              interval={interval}
+              onClick={() => {
+                dispatch(getCoinHistory(data.id, 7));
+              }}
+              value={7}
+            >
+              7d
+            </Button>
+            <Button
+              interval={interval}
+              onClick={() => {
+                dispatch(getCoinHistory(data.id, 31));
+              }}
+              value={31}
+            >
+              1m
+            </Button>
+            <Button
+              interval={interval}
+              onClick={() => {
+                dispatch(getCoinHistory(data.id, 90));
+              }}
+              value={90}
+            >
+              3m
+            </Button>
+            <Button
+              interval={interval}
+              onClick={() => {
+                dispatch(getCoinHistory(data.id, 365));
+              }}
+              value={365}
+            >
+              1y
+            </Button>
+            <Button
+              interval={interval}
+              onClick={() => {
+                dispatch(getCoinHistory(data.id, 1800));
+              }}
+              value={1800}
+            >
+              5y
+            </Button>
           </ButtonContainer>
         </Wrapper>
       )}

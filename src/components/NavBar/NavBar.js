@@ -38,9 +38,9 @@ const NavBar = () => {
   const [dropDown, setDropdown] = useState(false);
   const [listDropDown, setlistDropDown] = useState(false);
   const [coin, setCoin] = useState("");
-  const filteredCoinList = useSelector(state => state.app.filteredCoinList);
   const currency = useSelector(state => state.app.currency);
   const currencies = useSelector(state => state.app.currencies);
+  const filteredCoinList = useSelector(state => state.app.filteredCoinList);
   const marketData = useSelector(state => state.app.marketData);
   const symbol = useSelector(state => state.app.symbol);
   const history = useHistory();
@@ -90,14 +90,14 @@ const NavBar = () => {
                 value={coin}
               />
             </form>
-            {listDropDown && (
+            {listDropDown && coin ? (
               <SearchContainer
                 onMouseLeave={() => {
                   setlistDropDown(false);
                   setCoin("");
                 }}
               >
-                {filteredCoinList.length >= 0
+                {filteredCoinList.length >= 1
                   ? filteredCoinList.map((coin, index) => (
                       <StyledLink
                         key={index}
@@ -112,6 +112,8 @@ const NavBar = () => {
                     ))
                   : setlistDropDown(false)}
               </SearchContainer>
+            ) : (
+              ""
             )}
           </InputLi>
           <Li onClick={() => setDropdown(!dropDown)}>

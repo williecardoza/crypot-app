@@ -41,18 +41,19 @@ const AssetCard = ({ coin }) => {
         <DataContainer>
           <H3>Market Price:</H3>
           <MarketDataContainer>
-            <H3>
-              Current Price: <Span>${coin.current_price}</Span>
-            </H3>
+            <FlexContainer>
+              <H3>Current Price:</H3>
+              <Span>${coin.current_price}</Span>
+            </FlexContainer>
             <FlexContainer>
               <H3>PriceChange 24h:</H3>
               <StyledArrowIcon value={coin.priceChange24H} />
               <ColoredSpan value={coin.priceChange24H}>
-                ${numeral(coin.priceChange24H).format()}
+                ${coin.priceChange24H}
               </ColoredSpan>
             </FlexContainer>
             <FlexContainer>
-              <H3>Market Cap vs Volume </H3>
+              <H3>Market Cap vs Vol </H3>
               <ProgressBar
                 animateOnRender={true}
                 completed={parseInt(coin.marketCapVsVolume.toFixed())}
@@ -66,7 +67,7 @@ const AssetCard = ({ coin }) => {
               />
             </FlexContainer>
             <FlexContainer>
-              <H3>Circ Supply vs Max supply: </H3>
+              <H3>Circ Sup vs Max sup: </H3>
               <ProgressBar
                 animateOnRender={true}
                 completed={
@@ -98,9 +99,10 @@ const AssetCard = ({ coin }) => {
             <StyledRemoveIcon onClick={() => dispatch(RemoveCoin(coin.id))} />
           </FlexContainer>
           <MarketDataContainer>
-            <H3>
-              Coin Amount: <Span>{coin.coinAmount.toFixed(5)}</Span>
-            </H3>
+            <FlexContainer>
+              <H3>Coin Amount:</H3>
+              <Span> {coin.coinAmount.toFixed(5)}</Span>
+            </FlexContainer>
             <FlexContainer>
               <H3>Amount Value:</H3>
               <StyledArrowIcon value={coin.amountValue} />

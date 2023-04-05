@@ -12,14 +12,16 @@ export const getCoinData = coinName => async (dispatch, getState) => {
   } catch (error) {}
 };
 
-export const getCoinHistory =
-  (days, currency) => async (dispatch, getState) => {
-    try {
-      const coinURL = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${currency}&days=${days}`;
-      const { data } = await axios(coinURL);
-      dispatch({
-        type: GET_COIN_HISTORY_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {}
-  };
+export const getCoinHistory = (coin, days) => async (dispatch, getState) => {
+  const state = getState();
+  try {
+    const coinURL = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${
+      state.app.currency
+    }&days=${days}&interval=${days === 1 ? "hourly" : "daily"}`;
+    const { data } = await axios(coinURL);
+    dispatch({
+      type: GET_COIN_HISTORY_SUCCESS,
+      payload: [data, days],
+    });
+  } catch (error) {}
+};

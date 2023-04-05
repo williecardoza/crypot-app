@@ -42,8 +42,8 @@ const HomePage = () => {
   }, [coinsPerPage, page, order]);
 
   return (
-    <Wrapper>
-      <Container>
+    <Container>
+      <Wrapper>
         <H2>Bitcoin Overview</H2>
         <BitcoinChartContainer>
           <ChartContainer>
@@ -65,8 +65,8 @@ const HomePage = () => {
             )}
           </TableContainer>
         </CoinListContainer>
-      </Container>
-    </Wrapper>
+      </Wrapper>
+    </Container>
   );
 };
 

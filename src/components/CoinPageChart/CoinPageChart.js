@@ -27,8 +27,18 @@ const CoinPageChart = props => {
     datasets: [
       {
         data: props.coinHistory.prices.map(price => price[1]),
-        fill: true,
+        backgroundColor: context => {
+          const ctx = context.chart.ctx;
+          const gradient = ctx.createLinearGradient(0, 0, 0, 350);
+          gradient.addColorStop(0, "rgba(0, 0, 0, 0.2)");
+          gradient.addColorStop(1, "rgba(44, 47, 54, 0.3)");
+
+          return gradient;
+        },
         borderColor: "#404040",
+        pointRadius: 0,
+        borderWidth: 3,
+        fill: true,
       },
     ],
   };
@@ -48,7 +58,7 @@ const CoinPageChart = props => {
     },
     elements: {
       line: {
-        tension: 0.6,
+        tension: 0.2,
       },
       point: {
         radius: 0,
@@ -65,7 +75,7 @@ const CoinPageChart = props => {
           display: false,
           maxRotation: 0,
           minRotation: 0,
-          maxTicksLimit: 6,
+          maxTicksLimit: 10,
         },
       },
       y: {

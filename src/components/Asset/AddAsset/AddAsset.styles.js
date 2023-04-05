@@ -31,11 +31,11 @@ export const AddAssetOverlay = styled.div`
   :hover {
     cursor: pointer;
   }
-  z-index: 1;
+  z-index: 999;
 `;
 
 export const AddAssetContainer = styled.div`
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   box-shadow: 0px 0px 25px 5px black;
   border-radius: 10px;
   display: flex;
@@ -51,7 +51,7 @@ export const AddAssetContainer = styled.div`
 
 export const Button = styled.button`
   background: ${props =>
-    props.greenBackground ? "#06D554" : props.theme.secondary};
+    props.greenBackground ? "#06D554" : props.theme.main};
   border: none;
   box-shadow: 0px 7px 50px -17px black;
   border-radius: 6px;
@@ -72,7 +72,7 @@ export const ButtonContainer = styled.div`
 
 export const CoinImageContainer = styled.div`
   align-items: center;
-  background: ${props => props.theme.main};
+  background: ${props => props.theme.secondary};
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -81,7 +81,7 @@ export const CoinImageContainer = styled.div`
 
 export const CoinContainer = styled.div`
   align-items: center;
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   box-shadow: 0px 7px 50px -17px black;
   border-radius: 6px;
   display: flex;
@@ -100,31 +100,33 @@ export const CoinDataContainer = styled.div`
 
 export const DollarSign = styled.span`
   color: ${props => props.theme.color};
-  left: 18px;
+  left: 8px;
   font-size: 18px;
   position: absolute;
 `;
 
 export const DropDownItem = styled.div`
-  text-align: center;
   font-size: 19px;
+  margin: 5px 0;
+  padding: 0 20px;
   width: 100%;
   :hover {
-    background: ${props => props.theme.third};
+    text-decoration: underline;
     cursor: pointer;
   }
 `;
 
 export const DropDown = styled.div`
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   box-shadow: 0px 7px 50px -17px black;
+  border-radius: 0 0 10px 10px;
   display: flex;
   flex-direction: column;
   height: 73%;
   gap: 5px;
   position: absolute;
   overflow-y: scroll;
-  top: 57px;
+  top: 65px;
   width: 100%;
   z-index: 1;
 `;
@@ -140,14 +142,14 @@ export const H3 = styled.h3`
 `;
 
 export const Input = styled.input`
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   box-shadow: 0px 7px 50px -17px black;
   border: none;
   border-radius: 6px;
   color: ${props => props.theme.color};
   font-family: sans-serif;
-  font-size: 18px;
-  padding: 17px 32px;
+  font-size: 19px;
+  padding: 20px;
   width: 350px;
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
