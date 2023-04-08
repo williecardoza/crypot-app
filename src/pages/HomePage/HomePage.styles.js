@@ -17,7 +17,7 @@ export const BitcoinChartContainer = styled.div`
 
 export const ChartContainer = styled.div`
   align-items: center;
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   border-radius: 10px;
   box-shadow: 0 2px 14px -4px black;
   display: flex;
@@ -28,22 +28,18 @@ export const ChartContainer = styled.div`
   width: 45%;
 `;
 
-export const Container = styled.div`
-  background: ${props => props.theme.main};
-  display: flex;
-  flex-direction: column;
-  margin-top: 70px;
-  padding: 45px 50px;
-  width: 70%;
-
-`;
-
 export const CoinListContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
   margin: 20px 0 0 0;
   width: 100%;
+`;
+
+export const Container = styled.div`
+  background: ${props => props.theme.main};
+  display: flex;
+  justify-content: center;
 `;
 
 export const H2 = styled.h2`
@@ -64,7 +60,7 @@ export const LoadingSpinner = styled.div`
 `;
 
 export const TableContainer = styled.div`
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   border-radius: 10px;
   box-shadow: 0 2px 14px -4px black;
   padding: 0 0 20px 0;
@@ -76,6 +72,10 @@ export const TableContainer = styled.div`
 
 export const Wrapper = styled.div`
   background: ${props => props.theme.secondary};
+  border-radius: 0 0 20px 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  margin-top: 69px;
+  padding: 45px 50px;
+  width: 70%;
 `;

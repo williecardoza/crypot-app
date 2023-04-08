@@ -17,7 +17,6 @@ export const AddAssetButton = styled.button`
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  height: 100vh;
 `;
 
 export const H2 = styled.h2`
@@ -32,8 +31,12 @@ export const PortfolioList = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  background: ${props => props.theme.secondary};
+  border-radius: 0 0 20px 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: 60px 50px;
   width: 70%;
-  margin-top: 90px;
+  margin-top: 69px;
 `;

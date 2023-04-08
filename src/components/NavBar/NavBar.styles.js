@@ -17,6 +17,7 @@ export const StyledLink = styled(Link)`
 export const StyledNavLink = styled(NavLink)`
   background: none;
   border-radius: 5px;
+  box-shadow: 0 3px 9px -5px black;
   color: ${props => props.theme.color};
   padding: 10px 30px;
   text-decoration: none;
@@ -111,6 +112,7 @@ export const Input = styled.input`
 `;
 export const InputLi = styled.li`
   align-items: center;
+  box-shadow: 0 3px 9px -5px black;
   display: flex;
   list-style: none;
   margin: 0 5px;
@@ -138,7 +140,7 @@ export const LeftContainer = styled.div`
 `;
 
 export const MarketDataContainer = styled.div`
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   box-shadow: 6px 5px 13px -8px black;
   border-radius: 0 0 10px 10px;
   display: flex;
@@ -152,6 +154,7 @@ export const Nav = styled.nav`
   color: ${props => props.theme.color};
   position: absolute;
   width: 100%;
+  z-index: 10;
 `;
 
 export const ProgressBarContainer = styled.div`
@@ -169,6 +172,7 @@ export const RightContainer = styled.div`
 export const SearchContainer = styled.div`
   background: ${props => props.theme.third};
   border-radius: 5px;
+  box-shadow: 0 3px 9px -5px black;
   top: 50px;
   display: flex;
   flex-direction: column;
@@ -181,7 +185,7 @@ export const SearchContainer = styled.div`
 
 export const Ul = styled.ul`
   align-items: center;
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   display: flex;
   justify-content: space-between;
   margin: 0 auto;

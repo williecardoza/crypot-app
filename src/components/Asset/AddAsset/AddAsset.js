@@ -33,6 +33,7 @@ function AddAsset() {
   const [coin, setCoin] = useState("");
   const [amount, setAmount] = useState("");
   const [dropDown, setDropdown] = useState(false);
+  const symbol = useSelector(state => state.app.symbol);
   const filteredCoinList = useSelector(
     state => state.portfolio.filteredCoinList
   );
@@ -73,24 +74,26 @@ function AddAsset() {
                 onClick={() => setDropdown(!dropDown)}
               />
             </InputContainer>
-            {dropDown && filteredCoinList.length > 1 && (
-              <DropDown onMouseLeave={() => setDropdown(false)}>
-                {filteredCoinList.map(coin => (
-                  <DropDownItem
-                    key={coin.id}
-                    onClick={() => {
-                      setCoin(coin.id);
-                      setDropdown(!dropDown);
-                      dispatch(SearchCoin(coin.id));
-                    }}
-                  >
-                    {coin.id}
-                  </DropDownItem>
-                ))}
-              </DropDown>
-            )}
+            {dropDown && coin
+              ? filteredCoinList.length > 1 && (
+                  <DropDown onMouseLeave={() => setDropdown(false)}>
+                    {filteredCoinList.map(coin => (
+                      <DropDownItem
+                        key={coin.id}
+                        onClick={() => {
+                          setCoin(coin.id);
+                          setDropdown(!dropDown);
+                          dispatch(SearchCoin(coin.id));
+                        }}
+                      >
+                        {coin.id}
+                      </DropDownItem>
+                    ))}
+                  </DropDown>
+                )
+              : ""}
             <InputContainer>
-              <DollarSign>$</DollarSign>
+              <DollarSign>{symbol}</DollarSign>
               <Input
                 onChange={e => setAmount(e.target.value)}
                 placeholder="Purchased Amount"

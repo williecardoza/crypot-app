@@ -7,43 +7,37 @@ export const StyledExchangeIcon = styled(ExchangeIcon)`
   padding: 20px;
 `;
 export const StyledLayerIcon = styled(LayerIcon)`
-  margin: 15px auto;
+  margin: auto;
   width: 100%;
 `;
 export const Button = styled.button`
-  background: none;
-  border: 2px solid #06d554;
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  background: ${props => (props.interval === props.value ? "#06d554" : "none")};
+  border: ${props =>
+    props.interval === props.value ? "2px solid green" : "none"};
+  border-radius: 5px;
+  color: ${props => props.theme.color};
+  font-size: 15px;
+  height: 35px;
+  width: 35px;
   :hover {
     background: #06d554;
-    border: 5px solid green;
+    border: 2px solid green;
     cursor: pointer;
-  }
-  :focus {
-    background: #06d554;
-    border: 5px solid green;
   }
 `;
 export const ButtonContainer = styled.div`
+  background: ${props => props.theme.third};
+  border-radius: 10px;
   display: flex;
-  margin: 15px auto 0 auto;
+  margin: 0 auto;
   justify-content: space-between;
-  width: 40%;
-`;
-export const Calculator = styled.div`
-  align-items: center;
-  display: flex;
-  font-size: 17px;
-  height: 45px;
-  width: 330px;
+  padding: 5px;
+  width: 30%;
 `;
 export const CalculatorContainer = styled.div`
   align-items: center;
   display: flex;
   margin: auto;
-  justify-content: center;
 `;
 export const Container = styled.div`
   align-items: center;
@@ -64,15 +58,24 @@ export const Currency = styled.div`
   text-align: center;
 `;
 export const CoinDescription = styled.div`
-  a:link {
+  text-align: center;
+  a:link,
+  a:visited {
     color: #06d554;
     text-decoration: none;
   }
-  text-align: center;
 `;
 export const ChartContainer = styled.div`
+  bottom: -330px;
+  position: absolute;
   width: 100%;
 `;
+
+export const H2 = styled.div`
+  font-size: 22px;
+  margin: 0;
+`;
+
 export const Input = styled.input`
   background: ${props => props.theme.third};
   border: none;
@@ -82,7 +85,7 @@ export const Input = styled.input`
   color: ${props => props.theme.color};
   font-size: 16px;
   height: 100%;
-  padding: 0 0 0 10px;
+  padding: 0 0 0 20px;
   width: 100%;
   :focus {
     outline: none;
@@ -93,38 +96,40 @@ export const Input = styled.input`
     -webkit-appearance: none;
   }
 `;
-export const Time = styled.p`
-  font-size: 14px;
-  margin-left: 10px;
-`;
-export const TimeFrame = styled.div`
+export const InputContainer = styled.div`
   align-items: center;
-  display: flex;
-`;
-export const Theme = styled.div`
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.third};
   border-radius: 10px;
-  box-shadow: 0 2px 10px -4px black;
-  padding: 10px 18px;
+  display: flex;
+  font-size: 17px;
+  height: 45px;
+  width: 330px;
+  position: relative;
 `;
-export const ThemeContainer = styled.div`
+export const SummaryContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-export const Value = styled.div`
-  align-items: center;
-  background: ${props => props.theme.third};
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  display: flex;
-  font-size: 16px;
-  height: 100%;
-  padding: 0 0 0 10px;
-  width: 100%;
+export const Symbol = styled.div`
+  position: absolute;
+  left: 70px;
+`;
+
+export const Theme = styled.div`
+  background: ${props => props.theme.main};
+  border-radius: 10px;
+  box-shadow: 0 2px 10px -4px black;
+  padding: 10px;
 `;
 export const Wrapper = styled.div`
+  background: ${props => props.theme.secondary};
+  border-radius: 0 0 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 71%;
+  margin-top: 69px;
+  padding: 50px 50px 25px 50px;
+  position: relative;
+  width: 70%;
+  z-index: 10;
 `;

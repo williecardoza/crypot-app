@@ -9,7 +9,7 @@ export const StyledArrowIcon = styled(ArrowSVG)`
   transform: ${props => (props.value > 0 ? "rotate(0deg)" : "rotate(180deg)")};
 `;
 export const StyledLayerIcon = styled(LayerIcon)`
-  margin: 15px auto;
+  margin: auto;
   width: 100%;
 `;
 export const StyledLinkIcon = styled(LinkIcon)`
@@ -26,9 +26,14 @@ export const CurrencyIcon = styled.div`
   width: 55px;
 `;
 export const CurrencyContainer = styled.div`
+  align-items: center;
+  background: ${props => props.theme.main};
+  border-radius: 5px;
+  box-shadow: 0 2px 10px -4px black;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 10px;
 `;
 export const Currency = styled.div`
   background: #06d554;
@@ -43,15 +48,13 @@ export const CoinContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 35px 20px;
 `;
 export const FlexContainer = styled.div`
   align-items: center;
   display: flex;
-  margin: 5px;
 `;
 export const H1 = styled.h1`
-  font-size: 44px;
+  font-size: 35px;
   font-weight: light;
   margin: 0;
 `;
@@ -67,11 +70,10 @@ export const H3 = styled.h3`
 export const IconContainer = styled.div`
   align-items: center;
   display: flex;
-  background: ${props => props.theme.main};
+  background: ${props => props.theme.secondary};
   border-radius: 10px;
   height: 105px;
   justify-content: center;
-  margin: auto;
   width: 105px;
 `;
 export const Link = styled.a`
@@ -84,10 +86,22 @@ export const Link = styled.a`
   }
 `;
 export const MarketDataContainer = styled.div`
+  background: ${props => props.theme.main};
+  box-shadow: 0 2px 10px -4px black;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
+  gap: 5px;
+  padding: 10px 20px;
 `;
-export const PriceContainer = styled.div``;
+export const PriceContainer = styled.div`
+  background: ${props => props.theme.main};
+  box-shadow: 0 2px 10px -4px black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 25px;
+`;
 export const ProfitValue = styled.span`
   color: ${props => (props.value > 0 ? "#00FC2A" : "#FE1040")};
   font-size: 18px;
@@ -96,17 +110,12 @@ export const ProfitValue = styled.span`
 export const VolumeContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 5px;
   margin-top: 25px;
 `;
 export const Span = styled.span`
   font-size: 18px;
   font-weight: lighter;
-`;
-export const Theme = styled.div`
-  background: ${props => props.theme.secondary};
-  border-radius: 10px;
-  box-shadow: 0 2px 10px -4px black;
-  padding: 15px 25px;
 `;
 export const ThemeContainer = styled.div`
   display: flex;

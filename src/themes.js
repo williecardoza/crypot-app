@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 export const darkTheme = {
-  main: "#1F2128",
-  secondary: "#191B1F",
+  main: "#191B1F",
+  secondary: "#1F2128",
   third: "#2C2F36",
   color: "#FFFFFF"
 };

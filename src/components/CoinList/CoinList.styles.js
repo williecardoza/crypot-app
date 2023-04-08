@@ -32,7 +32,7 @@ export const StyledRightArrow = styled(RightArrowIcon)`
 `;
 
 export const FilterContainer = styled.div`
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
