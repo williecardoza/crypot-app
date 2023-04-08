@@ -12,6 +12,11 @@ export const AddAssetButton = styled.button`
   :hover {
     cursor: pointer;
   }
+  @media (max-width: 1200px) {
+    white-space: nowrap;
+    font-size: 17px;
+    padding: 13px 80px;
+  }
 `;
 
 export const Container = styled.div`
@@ -28,6 +33,9 @@ export const PortfolioList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
+  @media (max-width: 1200px) {
+    gap: 10px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -39,4 +47,9 @@ export const Wrapper = styled.div`
   padding: 60px 50px;
   width: 70%;
   margin-top: 69px;
+  @media (max-width: 1200px) {
+    background: none;
+    padding: 55px 0 100px 0;
+    width: 90%;
+  }
 `;

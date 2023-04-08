@@ -3,6 +3,7 @@ import {
   FETCH_COIN_LIST_SUCCESS,
   FILTER_COIN_LIST,
   GET_MARKET_DATA_SUCCESS,
+  UPDATE_CURRENT_MOBILE_PAGE,
   UPDATE_THEME,
   UPDATE_CURRENCY,
 } from "./index";
@@ -53,4 +54,11 @@ export const SearchCoin = coinName => async (dispatch, getState) => {
     type: FILTER_COIN_LIST,
     payload: filteredSearch,
   });
+};
+
+export const updateCurrentMobilePage = page => {
+  return {
+    type: UPDATE_CURRENT_MOBILE_PAGE,
+    payload: page,
+  };
 };

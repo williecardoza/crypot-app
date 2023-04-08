@@ -8,10 +8,12 @@ import { getBitcoinData } from "../../../store/home/actions";
 import {
   Button,
   ChartContainer,
+  ChartWrapper,
   DescriptionContainer,
   H1,
   H2,
   IntervalContainer,
+  LoadingSpinner,
 } from "./LineChart.styles";
 import {
   Chart as ChartJS,
@@ -37,6 +39,7 @@ const LineChart = () => {
   const dispatch = useDispatch();
   const bitcoinData = useSelector(state => state.coinList.bitcoinData);
   const interval = useSelector(state => state.coinList.interval);
+  const chartLoading = useSelector(state => state.coinList.chartLoading);
   const currency = useSelector(state => state.app.currency);
   const prices = bitcoinData ? bitcoinData.prices.map(price => price[1]) : "";
   const data = {
@@ -112,69 +115,75 @@ const LineChart = () => {
     },
   };
   return (
-    <>
-      <DescriptionContainer>
-        <div>
-          <H2>Price</H2>
-          <H1>
-            {formatCurrency(
-              bitcoinData && bitcoinData.prices[prices.length - 1][1],
-              currency
+    <ChartWrapper>
+      {chartLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <DescriptionContainer>
+            <div>
+              <H2>BTC</H2>
+              <H1>
+                {formatCurrency(
+                  bitcoinData && bitcoinData.prices[prices.length - 1][1],
+                  currency
+                )}
+              </H1>
+              <H2>{getCurrentDate()}</H2>
+            </div>
+            <IntervalContainer>
+              <Button
+                interval={interval}
+                onClick={() => dispatch(getBitcoinData(1))}
+                value={1}
+              >
+                1d
+              </Button>
+              <Button
+                interval={interval}
+                onClick={() => dispatch(getBitcoinData(7))}
+                value={7}
+              >
+                1w
+              </Button>
+              <Button
+                interval={interval}
+                onClick={() => dispatch(getBitcoinData(31))}
+                value={31}
+              >
+                1m
+              </Button>
+              <Button
+                interval={interval}
+                onClick={() => dispatch(getBitcoinData(90))}
+                value={90}
+              >
+                3m
+              </Button>
+              <Button
+                interval={interval}
+                onClick={() => dispatch(getBitcoinData(180))}
+                value={180}
+              >
+                6m
+              </Button>
+              <Button
+                interval={interval}
+                onClick={() => dispatch(getBitcoinData(365))}
+                value={365}
+              >
+                1y
+              </Button>
+            </IntervalContainer>
+          </DescriptionContainer>
+          <ChartContainer>
+            {bitcoinData && (
+              <Line data={data} options={options} height={230} width={640} />
             )}
-          </H1>
-          <H2>{getCurrentDate()}</H2>
-        </div>
-        <IntervalContainer>
-          <Button
-            interval={interval}
-            onClick={() => dispatch(getBitcoinData(1))}
-            value={1}
-          >
-            1d
-          </Button>
-          <Button
-            interval={interval}
-            onClick={() => dispatch(getBitcoinData(7))}
-            value={7}
-          >
-            1w
-          </Button>
-          <Button
-            interval={interval}
-            onClick={() => dispatch(getBitcoinData(31))}
-            value={31}
-          >
-            1m
-          </Button>
-          <Button
-            interval={interval}
-            onClick={() => dispatch(getBitcoinData(90))}
-            value={90}
-          >
-            3m
-          </Button>
-          <Button
-            interval={interval}
-            onClick={() => dispatch(getBitcoinData(180))}
-            value={180}
-          >
-            6m
-          </Button>
-          <Button
-            interval={interval}
-            onClick={() => dispatch(getBitcoinData(365))}
-            value={365}
-          >
-            1y
-          </Button>
-        </IntervalContainer>
-      </DescriptionContainer>
-      <ChartContainer>
-        {bitcoinData && (
-          <Line data={data} options={options} height={240} width={640} />
-        )}
-      </ChartContainer>
-    </>
+          </ChartContainer>
+        </>
+      )}
+    </ChartWrapper>
   );
 };
 export default LineChart;

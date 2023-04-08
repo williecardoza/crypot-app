@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ProgressBar from "@ramonak/react-progress-bar";
 import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as ArrowSVG } from "../SVG/arrowIcon.svg";
 import { ReactComponent as ThemeIcon } from "../SVG/themeIcon.svg";
@@ -27,6 +28,9 @@ export const StyledNavLink = styled(NavLink)`
   &.${props => props.activeClassName} {
     background-color: ${props => props.theme.third};
   }
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const StyledArrowIcon = styled(ArrowSVG)`
@@ -49,12 +53,16 @@ export const StyledThemeIcon = styled(ThemeIcon)`
   vertical-align: middle;
 `;
 
+export const StyledProgressBar = styled(ProgressBar)`
+  margin: 0 5px 0 5px;
+  width: 100%;
+`;
+
 export const CurrencyContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
-  font-size: 19px;
-  position: relative;
+  font-size: 17px;
 `;
 
 export const CurrencySymbol = styled.div`
@@ -62,12 +70,19 @@ export const CurrencySymbol = styled.div`
   margin: 0 5px 0 0;
 `;
 
+export const Data = styled.div`
+  @media (max-width: 1600px) {
+    display: none;
+  }
+`;
+
 export const Dropdown = styled.div`
+  border-radius: 5px;
   box-shadow: 8px 8px 25px -7px black;
   position: absolute;
-  top: 61px;
+  top: 50px;
   right: 0;
-  z-index: 10;
+  z-index: 15;
   width: 100%;
 `;
 
@@ -82,14 +97,16 @@ export const DropdownContainer = styled.div`
 
 export const DropdownItem = styled.div`
   align-items: center;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
-  padding: 12px;
+  padding: 11px;
   &:hover {
     background: ${props => props.theme.secondary};
     cursor: pointer;
   }
   width: 80%;
+  z-index: 999;
 `;
 
 export const Img = styled.img`
@@ -117,6 +134,9 @@ export const InputLi = styled.li`
   list-style: none;
   margin: 0 5px;
   position: relative;
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const Li = styled.li`
@@ -130,6 +150,26 @@ export const Li = styled.li`
   margin: 0 5px;
   &:hover {
     cursor: pointer;
+  }
+  @media (max-width: 900px) {
+    margin: 0;
+  }
+`;
+
+export const ThemeIconLi = styled.li`
+  background: ${props => props.theme.third};
+  border-radius: 5px;
+  box-shadow: 0 3px 9px -5px black;
+  color: ${props => props.theme.color};
+  list-style: none;
+  padding: 10px;
+  position: relative;
+  margin: 0 5px;
+  &:hover {
+    cursor: pointer;
+  }
+  @media (max-width: 1200px) {
+    display: none;
   }
 `;
 
@@ -146,20 +186,40 @@ export const MarketDataContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: auto;
-  padding: 5px 15px;
+  padding: 5px 10px;
   width: 45%;
+  z-index: 999;
+  @media (max-width: 900px) {
+    background: ${props => props.theme.third};
+    border-radius: 0;
+    box-shadow: none;
+    justify-content: space-around;
+    width: 100%;
+  }
 `;
 
 export const Nav = styled.nav`
   color: ${props => props.theme.color};
   position: absolute;
   width: 100%;
-  z-index: 10;
+`;
+
+export const Overview = styled.h3`
+  display: none;
+  @media (max-width: 900px) {
+    display: block;
+    font-size: 22px;
+    margin: 0;
+  }
 `;
 
 export const ProgressBarContainer = styled.div`
   align-items: center;
   display: flex;
+  width: 140px;
+  @media (max-width: 900px) {
+    width: 120px;
+  }
 `;
 
 export const RightContainer = styled.div`
@@ -167,6 +227,10 @@ export const RightContainer = styled.div`
   display: flex;
   font-size: 17px;
   margin: 10px;
+  @media (max-width: 900px) {
+    margin: 10px 0;
+    gap: 5px;
+  }
 `;
 
 export const SearchContainer = styled.div`
@@ -180,7 +244,7 @@ export const SearchContainer = styled.div`
   position: absolute;
   overflow-y: scroll;
   width: 100%;
-  z-index: 10;
+  z-index: 15;
 `;
 
 export const Ul = styled.ul`
@@ -191,4 +255,7 @@ export const Ul = styled.ul`
   margin: 0 auto;
   padding: 0;
   width: 85%;
+  @media (max-width: 900px) {
+    width: 90%;
+  }
 `;

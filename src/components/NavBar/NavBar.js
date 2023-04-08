@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import ProgressBar from "@ramonak/react-progress-bar";
 import {
   CurrencyContainer,
   CurrencySymbol,
+  Data,
   Dropdown,
   DropdownContainer,
   DropdownItem,
@@ -14,6 +14,7 @@ import {
   Li,
   MarketDataContainer,
   Nav,
+  Overview,
   ProgressBarContainer,
   RightContainer,
   SearchContainer,
@@ -22,6 +23,8 @@ import {
   StyledArrowIcon,
   StyledSearchIcon,
   StyledThemeIcon,
+  StyledProgressBar,
+  ThemeIconLi,
   Ul,
 } from "./NavBar.styles.js";
 import {
@@ -40,6 +43,7 @@ const NavBar = () => {
   const [coin, setCoin] = useState("");
   const currency = useSelector(state => state.app.currency);
   const currencies = useSelector(state => state.app.currencies);
+  const currentMobilePage = useSelector(state => state.app.currentMobilePage);
   const filteredCoinList = useSelector(state => state.app.filteredCoinList);
   const marketData = useSelector(state => state.app.marketData);
   const symbol = useSelector(state => state.app.symbol);
@@ -63,6 +67,7 @@ const NavBar = () => {
     <Nav>
       <Ul>
         <LeftContainer>
+          <Overview>{currentMobilePage}</Overview>
           <StyledNavLink activeClassName="active" exact={true} to="/">
             Coins
           </StyledNavLink>
@@ -148,64 +153,68 @@ const NavBar = () => {
               )}
             </>
           </Li>
-          <Li onClick={() => dispatch(handleThemeChange())}>
+          <ThemeIconLi onClick={() => dispatch(handleThemeChange())}>
             <StyledThemeIcon />
-          </Li>
+          </ThemeIconLi>
         </RightContainer>
       </Ul>
       <MarketDataContainer>
-        <div>Coins {marketData && marketData.data.active_cryptocurrencies}</div>
-        <div>Exchange {marketData && marketData.data.markets}</div>
-        <div>
+        <Data>
+          Coins {marketData && marketData.data.active_cryptocurrencies}
+        </Data>
+        <Data>Exchange {marketData && marketData.data.markets}</Data>
+        <Data>
           •{" "}
           {formatNumber(
             marketData && marketData.data.total_market_cap[currency]
           )}
-        </div>
+        </Data>
         <ProgressBarContainer>
           <div>
-            •{" "}
+            •
             {formatNumber(marketData && marketData.data.total_volume[currency])}{" "}
           </div>
-          <ProgressBar
+          <StyledProgressBar
             completed={marketData && marketData.data.total_volume[currency]}
             maxCompleted={999999999999}
             baseBgColor={"#2172E5"}
             bgColor={"#FFFFFF"}
             height={"8px"}
             isLabelVisible={false}
-            margin={"0 0 0 5px"}
-            width={"70px"}
           />
         </ProgressBarContainer>
         <ProgressBarContainer>
           <Img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/800px-Bitcoin.svg.png" />
-          <ProgressBar
+          <div>
+            {marketData &&
+              marketData.data.market_cap_percentage["btc"].toFixed()}
+            %
+          </div>
+          <StyledProgressBar
             completed={parseInt(
               marketData && marketData.data.market_cap_percentage["btc"]
             )}
-            isLabelVisible={true}
             baseBgColor={"#2172E5"}
             bgColor={"#FFFFFF"}
             height={"8px"}
-            labelAlignment={"outside"}
-            margin={"0 0 0 5px"}
-            width={"70px"}
+            isLabelVisible={false}
           />
         </ProgressBarContainer>
         <ProgressBarContainer>
           <Img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg" />
-          <ProgressBar
+          <div>
+            {marketData &&
+              marketData.data.market_cap_percentage["eth"].toFixed()}
+            %
+          </div>
+          <StyledProgressBar
             completed={parseInt(
               marketData && marketData.data.market_cap_percentage["eth"]
             )}
-            isLabelVisible={true}
+            isLabelVisible={false}
             baseBgColor={"#2172E5"}
             bgColor={"#FFFFFF"}
             height={"8px"}
-            labelAlignment={"outside"}
-            margin={"0 0 0 5px"}
-            width={"70px"}
           />
         </ProgressBarContainer>
       </MarketDataContainer>

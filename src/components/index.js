@@ -5,4 +5,5 @@ export { default as CoinCard } from "./CoinCard";
 export { default as CoinList } from "./CoinList";
 export { default as CoinSummary } from "./CoinSummary";
 export { default as CoinPageChart } from "./CoinPageChart";
+export { default as MobileFooter } from "./MobileFooter";
 export { default as UpdateAsset } from "./Asset/UpdateAsset";

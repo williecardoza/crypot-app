@@ -6,6 +6,10 @@ export const StyledExitIcon = styled(ExitIcon)`
   :hover {
     cursor: pointer;
   }
+  @media (max-width: 1200px) {
+    height: 23px;
+    width: 23px;
+  }
 `;
 
 export const StyledGreenArrow = styled(GreenArrow)`
@@ -29,6 +33,9 @@ export const Button = styled.button`
   :hover {
     cursor: pointer;
   }
+  @media (max-width: 1200px) {
+    padding: 10px 23px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -44,6 +51,9 @@ export const CoinImageContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 45px;
+  @media (max-width: 1200px) {
+    padding: 20px;
+  }
 `;
 
 export const CoinContainer = styled.div`
@@ -55,6 +65,9 @@ export const CoinContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 45px;
+  @media (max-width: 1200px) {
+    padding: 20px;
+  }
 `;
 
 export const CoinDataContainer = styled.div`
@@ -70,11 +83,17 @@ export const DollarSign = styled.span`
   left: 18px;
   font-size: 18px;
   position: absolute;
+  @media (max-width: 1200px) {
+    left: 10px;
+  }
 `;
 
 export const H2 = styled.h2`
   font-size: 28px;
   margin: 0 auto;
+  @media (max-width: 1200px) {
+    font-size: 25px;
+  }
 `;
 
 export const H3 = styled.h3`
@@ -107,6 +126,10 @@ export const Input = styled.input`
     font-size: 18px;
     font-family: sans-serif;
   }
+  @media (max-width: 1200px) {
+    padding: 15px 20px;
+    width: 100%;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -126,7 +149,11 @@ export const MiddleContainer = styled.div`
   display: flex;
   gap: 35px;
   justify-content: center;
-  margin: 0 100px;
+  margin: 0 80px;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    margin: 0 auto;
+  }
 `;
 
 export const TopContainer = styled.div`
@@ -147,6 +174,9 @@ export const FloatingSpan = styled.span`
     font-size: 15px;
     color: ${props => props.theme.color};
   }
+  @media (max-width: 1200px) {
+    top: 25%;
+  }
 `;
 
 export const UpdateAssetOverlay = styled.div`
@@ -160,7 +190,7 @@ export const UpdateAssetOverlay = styled.div`
   :hover {
     cursor: pointer;
   }
-  z-index: 1;
+  z-index: 999;
 `;
 
 export const UpdateAssetContainer = styled.div`
@@ -175,5 +205,9 @@ export const UpdateAssetContainer = styled.div`
   position: fixed;
   :hover {
     cursor: default;
+  }
+  @media (max-width: 1200px) {
+    gap: 20px;
+    padding: 10px;
   }
 `;
