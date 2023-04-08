@@ -70,7 +70,7 @@ function AddAsset() {
                 value={coin}
               />
               <StyledGreenArrow
-                dropDown={dropDown}
+                dropdown={coin}
                 onClick={() => setDropdown(!dropDown)}
               />
             </InputContainer>

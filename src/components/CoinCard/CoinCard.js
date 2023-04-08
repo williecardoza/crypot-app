@@ -10,6 +10,7 @@ import {
   PercentageValue,
   StyledArrowIcon,
   StyledLink,
+  Span,
   Td,
   Tr,
 } from "./CoinCard.styles";
@@ -88,7 +89,7 @@ const CoinCard = props => {
       <Td>
         <CurrencyIcon src={image} />
         <StyledLink to={`/coin/${name}`}>
-          {name} ({symbol.toUpperCase()})
+          {name} <Span>({symbol.toUpperCase()})</Span>
         </StyledLink>
       </Td>
       <Td>{formatCurrency(current_price, props.currency)}</Td>

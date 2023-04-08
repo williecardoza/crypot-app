@@ -33,6 +33,9 @@ export const ButtonContainer = styled.div`
   justify-content: space-between;
   padding: 5px;
   width: 30%;
+  @media (max-width: 1200px) {
+    width: auto;
+  }
 `;
 export const CalculatorContainer = styled.div`
   align-items: center;
@@ -45,6 +48,9 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   margin: auto;
+  @media (max-width: 1200px) {
+    margin: 0 auto 70px auto;
+  }
 `;
 export const Currency = styled.div`
   align-items: center;
@@ -69,6 +75,11 @@ export const ChartContainer = styled.div`
   bottom: -330px;
   position: absolute;
   width: 100%;
+  @media (max-width: 1200px) {
+    position: revert;
+    bottom: 0;
+    height: 100%;
+  }
 `;
 
 export const H2 = styled.div`
@@ -105,10 +116,16 @@ export const InputContainer = styled.div`
   height: 45px;
   width: 330px;
   position: relative;
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 export const SummaryContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
 `;
 export const Symbol = styled.div`
   position: absolute;
@@ -120,6 +137,12 @@ export const Theme = styled.div`
   border-radius: 10px;
   box-shadow: 0 2px 10px -4px black;
   padding: 10px;
+  @media (max-width: 1200px) {
+    background: ${props => props.theme.third};
+    box-shadow: none;
+    height: 230px;
+    overflow: auto;
+  }
 `;
 export const Wrapper = styled.div`
   background: ${props => props.theme.secondary};
@@ -132,4 +155,9 @@ export const Wrapper = styled.div`
   position: relative;
   width: 70%;
   z-index: 10;
+  @media (max-width: 1200px) {
+    padding: 50px 50px 10px 50px;
+    background: none;
+    width: 90%;
+  }
 `;

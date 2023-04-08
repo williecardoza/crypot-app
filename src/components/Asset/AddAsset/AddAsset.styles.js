@@ -6,10 +6,14 @@ export const StyledExitIcon = styled(ExitIcon)`
   :hover {
     cursor: pointer;
   }
+  @media (max-width: 1200px) {
+    height: 23px;
+    width: 23px;
+  }
 `;
 
 export const StyledGreenArrow = styled(GreenArrow)`
-  transform: ${props => (props.dropDown ? "rotate(180deg)" : "rotate(0deg)")};
+  transform: ${props => (props.dropdown ? "rotate(180deg)" : "rotate(0deg)")};
   height: 6px;
   position: absolute;
   right: 10px;
@@ -35,17 +39,21 @@ export const AddAssetOverlay = styled.div`
 `;
 
 export const AddAssetContainer = styled.div`
-  background: ${props => props.theme.main};
+  background: ${props => props.theme.secondary};
   box-shadow: 0px 0px 25px 5px black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 35px;
-  padding: 35px;
+  gap: 30px;
+  padding: 30px;
   position: fixed;
   :hover {
     cursor: default;
+  }
+  @media (max-width: 1200px) {
+    gap: 20px;
+    padding: 15px 20px;
   }
 `;
 
@@ -62,6 +70,9 @@ export const Button = styled.button`
   :hover {
     cursor: pointer;
   }
+  @media (max-width: 1200px) {
+    padding: 10px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -72,22 +83,28 @@ export const ButtonContainer = styled.div`
 
 export const CoinImageContainer = styled.div`
   align-items: center;
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.main};
   border-radius: 5px;
   display: flex;
   justify-content: center;
   padding: 45px;
+  @media (max-width: 1200px) {
+    padding: 20px;
+  }
 `;
 
 export const CoinContainer = styled.div`
   align-items: center;
-  background: ${props => props.theme.main};
+  background: ${props => props.theme.secondary};
   box-shadow: 0px 7px 50px -17px black;
   border-radius: 6px;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 45px;
+  padding: 40px;
+  @media (max-width: 1200px) {
+    padding: 20px;
+  }
 `;
 
 export const CoinDataContainer = styled.div`
@@ -114,10 +131,13 @@ export const DropDownItem = styled.div`
     text-decoration: underline;
     cursor: pointer;
   }
+  @media (max-width: 1200px) {
+    margin: 0;
+  }
 `;
 
 export const DropDown = styled.div`
-  background: ${props => props.theme.main};
+  background: ${props => props.theme.secondary};
   box-shadow: 0px 7px 50px -17px black;
   border-radius: 0 0 10px 10px;
   display: flex;
@@ -129,11 +149,18 @@ export const DropDown = styled.div`
   top: 65px;
   width: 100%;
   z-index: 1;
+  @media (max-width: 1200px) {
+    top: 57px;
+    height: 68%;
+  }
 `;
 
 export const H2 = styled.h2`
   font-size: 28px;
   margin: 0 auto;
+  @media (max-width: 1200px) {
+    font-size: 25px;
+  }
 `;
 
 export const H3 = styled.h3`
@@ -142,7 +169,7 @@ export const H3 = styled.h3`
 `;
 
 export const Input = styled.input`
-  background: ${props => props.theme.main};
+  background: ${props => props.theme.secondary};
   box-shadow: 0px 7px 50px -17px black;
   border: none;
   border-radius: 6px;
@@ -166,6 +193,10 @@ export const Input = styled.input`
     font-size: 18px;
     font-family: sans-serif;
   }
+  @media (max-width: 1200px) {
+    padding: 15px 20px;
+    width: 100%;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -183,9 +214,13 @@ export const Image = styled.div`
 
 export const MiddleContainer = styled.div`
   display: flex;
-  gap: 35px;
+  gap: 30px;
   justify-content: center;
-  margin: 0 100px;
+  margin: 0 80px;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    margin: 0 auto;
+  }
 `;
 
 export const TopContainer = styled.div`
@@ -202,8 +237,11 @@ export const FloatingSpan = styled.span`
   top: 18px;
   transition: 0.2s ease all;
   ${Input}:focus ~ & {
-    top: -17px;
-    font-size: 15px;
+    top: -21px;
+    font-size: 17px;
     color: ${props => props.theme.color};
+  }
+  @media (max-width: 1200px) {
+    top: 25%;
   }
 `;

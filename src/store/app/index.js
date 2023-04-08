@@ -6,6 +6,7 @@ const initialState = {
     { name: "eur", symbol: "€" },
     { name: "gbp", symbol: "£" },
   ],
+  currentMobilePage: "Overview",
   filteredCoinList: [],
   marketData: null,
   symbol: "$",
@@ -14,6 +15,7 @@ const initialState = {
 export const FETCH_COIN_LIST_SUCCESS = "FETCH_COIN_LIST_SUCCESS";
 export const FILTER_COIN_LIST = "FILTER_COIN_LIST";
 export const GET_MARKET_DATA_SUCCESS = "GET_MARKET_DATA_SUCCESS";
+export const UPDATE_CURRENT_MOBILE_PAGE = "UPDATE_CURRENT_MOBILE_PAGE";
 export const UPDATE_CURRENCY = "UPDATE_CURRENCY";
 export const UPDATE_THEME = "UPDATE_THEME";
 
@@ -33,6 +35,11 @@ const appStorageReducer = (state = initialState, action) => {
       return {
         ...state,
         marketData: action.payload,
+      };
+    case UPDATE_CURRENT_MOBILE_PAGE:
+      return {
+        ...state,
+        currentMobilePage: action.payload,
       };
     case UPDATE_CURRENCY:
       return {

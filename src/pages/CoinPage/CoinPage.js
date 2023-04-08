@@ -26,12 +26,12 @@ const CoinPage = props => {
   const [amountValue, setAmountValue] = useState("");
   const [coinValue, setCoinValue] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const dispatch = useDispatch();
   const data = useSelector(state => state.coin.data);
   const coinHistory = useSelector(state => state.coin.coinHistory);
   const currency = useSelector(state => state.app.currency);
   const interval = useSelector(state => state.coin.interval);
   const symbol = useSelector(state => state.app.symbol);
+  const dispatch = useDispatch();
 
   const handleAmountConversion = e => {
     const sum = e.target.value / data.market_data.current_price[currency];
@@ -51,7 +51,7 @@ const CoinPage = props => {
     dispatch(getCoinData(props.match.params.coinId.toLowerCase()));
     dispatch(getCoinHistory(props.match.params.coinId.toLowerCase(), interval));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currency]);
+  }, [currency, props.match.params.coinId]);
 
   return (
     <Container>

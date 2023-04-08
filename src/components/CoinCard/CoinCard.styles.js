@@ -13,6 +13,9 @@ export const StyledLink = styled(Link)`
   :hover {
     text-decoration: underline;
   }
+  @media (max-width: 1200px) {
+    display: block;
+  }
 `;
 
 export const CurrencyContainer = styled.div`
@@ -27,6 +30,11 @@ export const CurrencyIcon = styled.img`
   margin-right: 10px;
   vertical-align: middle;
   width: 35px;
+  @media (max-width: 1200px) {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+  }
 `;
 export const LineChartContainer = styled.div`
   align-items: center;
@@ -40,14 +48,28 @@ export const PercentageValueContainer = styled.div`
   color: ${props => (props.value > 0 ? "#10E233" : "#FE1040")};
   display: flex;
   font-size: 19px;
+  @media (max-width: 1200px) {
+    font-size: 16px;
+  }
+`;
+
+export const Span = styled.span`
+  display: inline-block;
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 export const Td = styled.td`
   font-size: 19px;
-  padding: 20px 9px;
+  padding: 20px 10px;
   font-weight: lighter;
   &:hover {
     cursor: default;
+  }
+  @media (max-width: 1200px) {
+    font-size: 16px;
+    padding: 5px 10px;
   }
 `;
 export const Tr = styled.tr`

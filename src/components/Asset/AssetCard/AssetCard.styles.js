@@ -11,6 +11,10 @@ export const StyledArrowIcon = styled(Arrow)`
 
 export const StyledEditIcon = styled(EditIcon)`
   vertical-align: middle;
+  @media (max-width: 1200px) {
+    height: 17px;
+    width: 17px;
+  }
 `;
 
 export const StyledRemoveIcon = styled(RemoveIcon)`
@@ -19,18 +23,19 @@ export const StyledRemoveIcon = styled(RemoveIcon)`
   :hover {
     cursor: pointer;
   }
-`;
-
-export const AssetCardContainer = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  @media (max-width: 1200px) {
+    height: 31px;
+    width: 31px;
+  }
 `;
 
 export const AssetCardWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
 `;
 
 export const CoinImageContainer = styled.div`
@@ -40,6 +45,9 @@ export const CoinImageContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 30px;
+  @media (max-width: 1200px) {
+    background: ${props => props.theme.third};
+  }
 `;
 
 export const CoinContainer = styled.div`
@@ -51,6 +59,10 @@ export const CoinContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 50px;
+  @media (max-width: 1200px) {
+    box-shadow: none;
+    padding: 0;
+  }
 `;
 
 export const ColoredSpan = styled.span`
@@ -65,6 +77,11 @@ export const DataContainer = styled.div`
   justify-content: space-between;
   margin-left: 22px;
   width: 100%;
+  overflow: auto;
+
+  @media (max-width: 1200px) {
+    margin: 0;
+  }
 `;
 
 export const EditContainer = styled.div`
@@ -75,11 +92,18 @@ export const EditContainer = styled.div`
   :hover {
     cursor: pointer;
   }
+  @media (max-width: 1200px) {
+    background: none;
+  }
 `;
 
 export const FlexContainer = styled.div`
   align-items: center;
   display: flex;
+  white-space: nowrap;
+  @media (max-width: 1200px) {
+    white-space: nowrap;
+  }
 `;
 
 export const Image = styled.div`
@@ -99,6 +123,9 @@ export const H3 = styled.h3`
   font-size: 18px;
   font-weight: light;
   margin: 0;
+  @media (max-width: 1200px) {
+    font-size: 15px;
+  }
 `;
 
 export const MarketDataContainer = styled.div`
@@ -109,10 +136,33 @@ export const MarketDataContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 22px 10px;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    border-radius: 10px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 100px rgba(44, 45, 51, 0.9);
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #10e233;
+    outline: 1px solid slategrey;
+  }
+  @media (max-width: 1200px) {
+    background: ${props => props.theme.third};
+    padding: 15px 10px;
+    gap: 10px;
+    overflow: auto;
+  }
 `;
 
 export const Span = styled.span`
   font-weight: light;
   font-size: 18px;
   margin: 0 0 0 5px;
+  @media (max-width: 1200px) {
+    font-size: 15px;
+  }
 `;

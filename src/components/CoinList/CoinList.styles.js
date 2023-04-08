@@ -11,6 +11,9 @@ export const StyledSortByIcon = styled(SortDownIcon)`
   :hover {
     cursor: pointer;
   }
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 export const StyledLeftArrow = styled(LeftArrowIcon)`
@@ -36,17 +39,27 @@ export const FilterContainer = styled.div`
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
+  padding: 10px;
+  @media (max-width: 1200px) {
+    padding: 0;
+  }
 `;
 
 export const H3 = styled.h3`
   font-size: 30px;
   margin: 0;
+  @media (max-width: 1200px) {
+    font-size: 26px;
+  }
 `;
 
 export const H4 = styled.h4`
   font-weight: lighter;
   font-size: 21px;
   margin: 0 0 0 5px;
+  @media (max-width: 1200px) {
+    font-size: 17px;
+  }
 `;
 
 export const LeftFilterContainer = styled.div`
@@ -72,6 +85,9 @@ export const Select = styled.select`
   :focus {
     outline: none;
   }
+  @media (max-width: 1200px) {
+    font-size: 16px;
+  }
 `;
 
 export const Table = styled.table`
@@ -82,8 +98,12 @@ export const Table = styled.table`
 
 export const Th = styled.th`
   font-size: 18px;
-  padding: 10px;
+  padding: 0 10px;
   text-align: left;
+  @media (max-width: 1200px) {
+    font-size: 16px;
+    padding: 5px;
+  }
 `;
 
 export const Tr = styled.tr`

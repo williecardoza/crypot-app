@@ -6,9 +6,11 @@ import { getCurrentDate } from "../../../Utils/getCurrentDate";
 import { useSelector } from "react-redux";
 import {
   ChartContainer,
+  ChartWrapper,
   DescriptionContainer,
   H1,
   H2,
+  LoadingSpinner,
 } from "../LineChart/LineChart.styles";
 import {
   Chart as ChartJS,
@@ -32,6 +34,7 @@ ChartJS.register(
 
 const BarChart = () => {
   const bitcoinData = useSelector(state => state.coinList.bitcoinData);
+  const chartLoading = useSelector(state => state.coinList.chartLoading);
   const data = {
     labels: bitcoinData
       ? bitcoinData.total_volumes.map(price => formatDate(price[0]))
@@ -81,24 +84,34 @@ const BarChart = () => {
     },
   };
   return (
-    <>
-      <DescriptionContainer>
-        <div>
-          <H2>Volume 24h</H2>
-          <H1>
-            {formatNumber(
-              bitcoinData ? bitcoinData.total_volumes[bitcoinData.total_volumes.length - 1][1] : ""
+    <ChartWrapper>
+      {chartLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <DescriptionContainer>
+            <div>
+              <H2>Volume 24h</H2>
+              <H1>
+                {formatNumber(
+                  bitcoinData
+                    ? bitcoinData.total_volumes[
+                        bitcoinData.total_volumes.length - 1
+                      ][1]
+                    : ""
+                )}
+              </H1>
+              <H2>{getCurrentDate()}</H2>
+            </div>
+          </DescriptionContainer>
+          <ChartContainer>
+            {bitcoinData && (
+              <Bar data={data} options={options} height={230} width={640} />
             )}
-          </H1>
-          <H2>{getCurrentDate()}</H2>
-        </div>
-      </DescriptionContainer>
-      <ChartContainer>
-        {bitcoinData && (
-          <Bar data={data} options={options} height={240} width={640} />
-        )}
-      </ChartContainer>
-    </>
+          </ChartContainer>
+        </>
+      )}
+    </ChartWrapper>
   );
 };
 export default BarChart;

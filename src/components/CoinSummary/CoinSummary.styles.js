@@ -34,6 +34,9 @@ export const CurrencyContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   padding: 10px;
+  @media (max-width: 1200px) {
+    box-shadow: none;
+  }
 `;
 export const Currency = styled.div`
   background: #06d554;
@@ -57,6 +60,9 @@ export const H1 = styled.h1`
   font-size: 35px;
   font-weight: light;
   margin: 0;
+  @media (max-width: 1200px) {
+    font-size: 28px;
+  }
 `;
 export const H2 = styled.h2`
   font-size: 25px;
@@ -66,6 +72,9 @@ export const H2 = styled.h2`
 export const H3 = styled.h3`
   font-size: 18px;
   margin: 0 0 0 10px;
+  @media (max-width: 1200px) {
+    font-size: 16px;
+  }
 `;
 export const IconContainer = styled.div`
   align-items: center;
@@ -75,6 +84,9 @@ export const IconContainer = styled.div`
   height: 105px;
   justify-content: center;
   width: 105px;
+  @media (max-width: 1200px) {
+    background: ${props => props.theme.third};
+  }
 `;
 export const Link = styled.a`
   color: ${props => props.theme.color};
@@ -92,7 +104,14 @@ export const MarketDataContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 10px 20px;
+  padding: 15px 30px;
+  @media (max-width: 1200px) {
+    align-items: center;
+    background: ${props => props.theme.third};
+    box-shadow: none;
+    border-radius: 10px;
+    padding: 15px;
+  }
 `;
 export const PriceContainer = styled.div`
   background: ${props => props.theme.main};
@@ -100,17 +119,29 @@ export const PriceContainer = styled.div`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  padding: 10px 25px;
+  justify-content: center;
+  padding: 15px 30px;
+  @media (max-width: 1200px) {
+    align-items: center;
+    background: ${props => props.theme.third};
+    box-shadow: none;
+    border-radius: 10px;
+    overflow: hidden;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
 `;
 export const ProfitValue = styled.span`
   color: ${props => (props.value > 0 ? "#00FC2A" : "#FE1040")};
   font-size: 18px;
   font-weight: lighter;
+  @media (max-width: 1200px) {
+    font-size: 15px;
+  }
 `;
 export const VolumeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
   margin-top: 25px;
 `;
 export const Span = styled.span`
@@ -123,4 +154,8 @@ export const ThemeContainer = styled.div`
 `;
 export const ValueContainer = styled.div`
   margin: auto;
+`;
+
+export const Div = styled.div`
+  width: 100%;
 `;

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { HomePage, CoinPage, Portfolio } from "./pages";
 import { NavBar } from "./components";
+import { MobileFooter } from "./components";
 import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
 import { useSelector } from "react-redux";
 
@@ -31,6 +32,7 @@ const App = () => {
           />
           <Route exact path="/portfolio" component={Portfolio} />
         </Switch>
+        <MobileFooter />
       </Router>
     </ThemeProvider>
   );
